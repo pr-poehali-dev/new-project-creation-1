@@ -1,9 +1,14 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
+
+const EMAILJS_SERVICE_ID = "service_ngubj7j";
+const EMAILJS_TEMPLATE_ID = "__ejs-test-mail-service_";
+const EMAILJS_PUBLIC_KEY = "6XBgBCrsMs5LWl-Kg4o4Y";
 
 const services = [
   {
@@ -66,11 +71,31 @@ const reviews = [
 export default function Index() {
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setPhone("");
+    setLoading(true);
+    setError("");
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: "Заявка с сайта ЛегисПро",
+          message: `Новая заявка на консультацию!\nТелефон: ${phone}`,
+          reply_to: "legis-pro@outlook.com",
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      setSubmitted(true);
+      setPhone("");
+    } catch {
+      setError("Ошибка отправки. Позвоните нам напрямую: 8 999 299-74-47");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -94,10 +119,10 @@ export default function Index() {
             <a href="#how" className="hover:text-white transition-colors">Как работаем</a>
             <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
           </div>
-          <a href="tel:+78001234567">
+          <a href="tel:+79992997447">
             <Button className="bg-red-700 hover:bg-red-800 text-white text-sm px-5 h-9 rounded-sm">
               <Icon name="Phone" size={15} className="mr-2" />
-              8 800 123-45-67
+              8 999 299-74-47
             </Button>
           </a>
         </div>
@@ -144,7 +169,7 @@ export default function Index() {
                   БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ
                 </Button>
               </a>
-              <a href="tel:+78001234567">
+              <a href="tel:+79992997447">
                 <Button
                   size="lg"
                   variant="outline"
@@ -286,24 +311,31 @@ export default function Index() {
               <p className="text-white/70 mt-2">Перезвоним в течение 5 минут</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-              <Input
-                type="tel"
-                placeholder="+7 (___) ___-__-__"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-                className="flex-1 bg-white/15 border-white/30 text-white placeholder:text-white/50 rounded-sm focus:border-white"
-              />
-              <Button
-                type="submit"
-                size="lg"
-                className="bg-[#111] hover:bg-[#222] text-white rounded-sm px-8 font-bold tracking-wide shrink-0"
-                style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}
-              >
-                ПЕРЕЗВОНИТЕ МНЕ
-              </Button>
-            </form>
+            <div>
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                <Input
+                  type="tel"
+                  placeholder="+7 (___) ___-__-__"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                  disabled={loading}
+                  className="flex-1 bg-white/15 border-white/30 text-white placeholder:text-white/50 rounded-sm focus:border-white"
+                />
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={loading}
+                  className="bg-[#111] hover:bg-[#222] text-white rounded-sm px-8 font-bold tracking-wide shrink-0"
+                  style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}
+                >
+                  {loading ? "ОТПРАВКА..." : "ПЕРЕЗВОНИТЕ МНЕ"}
+                </Button>
+              </form>
+              {error && (
+                <p className="text-white/80 text-sm mt-3">{error}</p>
+              )}
+            </div>
           )}
         </div>
       </section>
@@ -333,8 +365,11 @@ export default function Index() {
 
           {/* Контакт + копирайт */}
           <div className="text-right space-y-2">
-            <a href="tel:+78001234567" className="block text-white/60 hover:text-white text-sm transition-colors">
-              8 800 123-45-67
+            <a href="tel:+79992997447" className="block text-white/60 hover:text-white text-sm transition-colors">
+              8 999 299-74-47
+            </a>
+            <a href="tel:+79098904390" className="block text-white/60 hover:text-white text-sm transition-colors">
+              8 909 890-43-90
             </a>
             <p className="text-white/30 text-xs">© 2024 ЛегисПро. Все права защищены.</p>
           </div>
