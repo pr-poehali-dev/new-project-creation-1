@@ -1,261 +1,329 @@
-import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import Icon from '@/components/ui/icon';
+import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import Icon from "@/components/ui/icon";
 
-interface Article {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  tags: string[];
-  date: string;
-  readTime: string;
-}
-
-const mockArticles: Article[] = [
+const services = [
   {
-    id: 1,
-    title: 'Топ-10 трендов веб-дизайна 2024',
-    description: 'Разбираем самые актуальные тренды в современном веб-дизайне: от минимализма до ярких градиентов',
-    category: 'Дизайн',
-    tags: ['дизайн', 'тренды', 'веб'],
-    date: '15 декабря 2024',
-    readTime: '5 мин'
+    icon: "Car",
+    title: "Помощь при ДТП",
+    desc: "Выезд на место, сбор документов, представление интересов в страховой и суде. Взыскиваем полный ущерб.",
+    accent: true,
   },
   {
-    id: 2,
-    title: 'React 19: Что нового?',
-    description: 'Обзор новых возможностей React 19 и как они изменят разработку современных приложений',
-    category: 'Разработка',
-    tags: ['react', 'frontend', 'javascript'],
-    date: '12 декабря 2024',
-    readTime: '8 мин'
+    icon: "FileText",
+    title: "Оформление ОСАГО",
+    desc: "Оформим полис ОСАГО быстро и без переплат. Подберём выгодные условия среди ведущих страховых компаний.",
+    accent: false,
   },
   {
-    id: 3,
-    title: 'Психология цвета в маркетинге',
-    description: 'Как правильно использовать цвета для повышения конверсии и привлечения внимания аудитории',
-    category: 'Маркетинг',
-    tags: ['маркетинг', 'дизайн', 'психология'],
-    date: '10 декабря 2024',
-    readTime: '6 мин'
+    icon: "Scale",
+    title: "Досудебное урегулирование",
+    desc: "Переговоры со страховой компанией, составление претензий и получение максимальной выплаты без суда.",
+    accent: false,
   },
   {
-    id: 4,
-    title: 'AI в креативных индустриях',
-    description: 'Как искусственный интеллект меняет подход к созданию контента и визуального дизайна',
-    category: 'Технологии',
-    tags: ['ai', 'технологии', 'будущее'],
-    date: '8 декабря 2024',
-    readTime: '7 мин'
+    icon: "Gavel",
+    title: "Судебная защита",
+    desc: "Полное сопровождение в суде: от искового заявления до исполнения решения. Оплата по результату.",
+    accent: false,
   },
-  {
-    id: 5,
-    title: 'SEO-оптимизация в 2024',
-    description: 'Актуальные стратегии продвижения сайтов и что действительно работает сегодня',
-    category: 'Маркетинг',
-    tags: ['seo', 'маркетинг', 'продвижение'],
-    date: '5 декабря 2024',
-    readTime: '10 мин'
-  },
-  {
-    id: 6,
-    title: 'Микро-анимации в UI',
-    description: 'Как небольшие анимации улучшают пользовательский опыт и делают интерфейс живым',
-    category: 'Дизайн',
-    tags: ['ui', 'анимация', 'ux'],
-    date: '3 декабря 2024',
-    readTime: '4 мин'
-  }
 ];
 
-const categories = ['Все', 'Дизайн', 'Разработка', 'Маркетинг', 'Технологии'];
+const stats = [
+  { value: "1 200+", label: "дел выиграно" },
+  { value: "98%", label: "успешных исходов" },
+  { value: "14 лет", label: "на рынке" },
+  { value: "0 ₽", label: "предоплата" },
+];
 
-const Index = () => {
-  const [selectedCategory, setSelectedCategory] = useState('Все');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [email, setEmail] = useState('');
+const steps = [
+  { num: "01", title: "Звонок", desc: "Бесплатная консультация по вашей ситуации. Оцениваем перспективы." },
+  { num: "02", title: "Документы", desc: "Собираем все необходимые документы. Проводим независимую экспертизу." },
+  { num: "03", title: "Результат", desc: "Получаете максимальную выплату. Гонорар — только с выигранной суммы." },
+];
 
-  const allTags = Array.from(new Set(mockArticles.flatMap(article => article.tags)));
+const reviews = [
+  {
+    name: "Андрей М.",
+    text: "После ДТП страховая предлагала 80 тыс., ЛегисПро взыскали 340 тыс. Работают чётко и профессионально.",
+    stars: 5,
+  },
+  {
+    name: "Елена Р.",
+    text: "Очень быстро оформили ОСАГО, объяснили все нюансы. Цена оказалась ниже, чем в банке.",
+    stars: 5,
+  },
+  {
+    name: "Дмитрий К.",
+    text: "Помогли с виновником ДТП, который скрылся. Думал, что денег не получу — взыскали всё через суд.",
+    stars: 5,
+  },
+];
 
-  const filteredArticles = mockArticles.filter(article => {
-    const categoryMatch = selectedCategory === 'Все' || article.category === selectedCategory;
-    const tagMatch = selectedTags.length === 0 || selectedTags.some(tag => article.tags.includes(tag));
-    return categoryMatch && tagMatch;
-  });
+export default function Index() {
+  const [phone, setPhone] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const toggleTag = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
-    );
-  };
-
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Подписка:', email);
-    setEmail('');
+    setSubmitted(true);
+    setPhone("");
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
-      <header className="bg-white/80 backdrop-blur-sm border-b sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-black bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Блог
+    <div className="min-h-screen bg-white">
+
+      {/* NAV */}
+      <nav className="fixed top-0 inset-x-0 z-50 bg-[#111111]/95 backdrop-blur border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-red-700 flex items-center justify-center rounded-sm">
+              <Icon name="Scale" size={18} className="text-white" />
+            </div>
+            <span className="text-white text-xl font-bold tracking-wider" style={{ fontFamily: "'Oswald', sans-serif" }}>
+              ЛЕГИС<span className="text-red-500">ПРО</span>
+            </span>
+          </div>
+          <div className="hidden md:flex items-center gap-8 text-sm text-white/70">
+            <a href="#services" className="hover:text-white transition-colors">Услуги</a>
+            <a href="#how" className="hover:text-white transition-colors">Как работаем</a>
+            <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
+          </div>
+          <a href="tel:+78001234567">
+            <Button className="bg-red-700 hover:bg-red-800 text-white text-sm px-5 h-9 rounded-sm">
+              <Icon name="Phone" size={15} className="mr-2" />
+              8 800 123-45-67
+            </Button>
+          </a>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section
+        className="relative pt-16 min-h-screen flex items-center overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0d0d0d 0%, #1a0000 55%, #0d0d0d 100%)" }}
+      >
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute -left-24 top-1/4 w-96 h-96 border border-red-900/20 rounded-full" />
+          <div className="absolute -left-12 top-1/4 w-72 h-72 border border-red-900/30 rounded-full" />
+          <div
+            className="absolute right-0 bottom-0 w-1/2 h-full opacity-10"
+            style={{ background: "radial-gradient(circle at 100% 100%, #DC2626 0%, transparent 60%)" }}
+          />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 py-24 grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <Badge className="mb-6 bg-red-700/20 text-red-400 border border-red-700/30 text-xs tracking-widest uppercase animate-fade-up">
+              Юридическая помощь
+            </Badge>
+            <h1
+              className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6 animate-fade-up animate-fade-up-delay-1"
+              style={{ fontFamily: "'Oswald', sans-serif" }}
+            >
+              ПОПАЛИ В ДТП?<br />
+              <span className="text-red-500">МЫ ВЕРНЁМ</span><br />
+              ВАШИ ДЕНЬГИ
             </h1>
-            <div className="flex gap-4">
-              <Button variant="ghost" size="sm">
-                <Icon name="Search" size={20} />
-              </Button>
-              <Button variant="ghost" size="sm">
-                <Icon name="Menu" size={20} />
-              </Button>
+            <p className="text-white/60 text-lg mb-10 max-w-md leading-relaxed animate-fade-up animate-fade-up-delay-2">
+              Взыскиваем максимальные выплаты со страховых компаний.
+              Оплата только по результату — вы ничем не рискуете.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-up animate-fade-up-delay-3">
+              <a href="#contact">
+                <Button
+                  size="lg"
+                  className="bg-red-700 hover:bg-red-800 text-white px-8 rounded-sm text-base font-semibold tracking-wide"
+                  style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}
+                >
+                  БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ
+                </Button>
+              </a>
+              <a href="tel:+78001234567">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 rounded-sm text-base bg-transparent"
+                  style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.06em" }}
+                >
+                  <Icon name="Phone" size={18} className="mr-2" />
+                  ПОЗВОНИТЬ
+                </Button>
+              </a>
             </div>
           </div>
-        </div>
-      </header>
 
-      <section className="py-16 bg-gradient-to-r from-primary via-secondary to-accent text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-5xl font-black mb-4 animate-fade-in">
-            Исследуй мир идей
-          </h2>
-          <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto animate-fade-in">
-            Статьи про дизайн, разработку, маркетинг и технологии
-          </p>
-          <div className="flex gap-4 justify-center max-w-md mx-auto animate-scale-in">
-            <Input 
-              type="email" 
-              placeholder="Твой email" 
-              className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Button variant="secondary" onClick={handleSubscribe}>
-              Подписаться
-            </Button>
+          <div className="grid grid-cols-2 gap-4 animate-fade-up animate-fade-up-delay-2">
+            {stats.map((s) => (
+              <div
+                key={s.value}
+                className="bg-white/5 border border-white/10 rounded-sm p-6 text-center hover:bg-white/10 hover:border-red-700/40 transition-all"
+              >
+                <div className="text-4xl font-bold text-red-500 mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                  {s.value}
+                </div>
+                <div className="text-white/50 text-sm">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="mb-8">
-          <h3 className="text-lg font-bold mb-4">Категории</h3>
-          <div className="flex flex-wrap gap-3">
-            {categories.map(category => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? 'default' : 'outline'}
-                onClick={() => setSelectedCategory(category)}
-                className="rounded-full"
-              >
-                {category}
-              </Button>
-            ))}
+      {/* SERVICES */}
+      <section id="services" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="mb-14">
+            <p className="text-red-700 text-sm font-semibold tracking-widest uppercase mb-3">Что мы делаем</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#111] mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
+              НАШИ УСЛУГИ
+            </h2>
+            <div className="w-14 h-1 bg-red-700 rounded" />
           </div>
-        </div>
 
-        <div className="mb-12">
-          <h3 className="text-lg font-bold mb-4">Теги</h3>
-          <div className="flex flex-wrap gap-2">
-            {allTags.map(tag => (
-              <Badge
-                key={tag}
-                variant={selectedTags.includes(tag) ? 'default' : 'outline'}
-                className="cursor-pointer hover:scale-105 transition-transform px-4 py-2 text-sm"
-                onClick={() => toggleTag(tag)}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((s) => (
+              <Card
+                key={s.title}
+                className={`card-hover border-2 rounded-sm cursor-pointer ${s.accent ? "bg-red-700 border-red-700" : "bg-white border-gray-100 hover:border-red-200"}`}
               >
-                #{tag}
-              </Badge>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredArticles.map((article, index) => (
-            <Card 
-              key={article.id} 
-              className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in cursor-pointer overflow-hidden border-2 hover:border-primary"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="h-2 bg-gradient-to-r from-primary via-secondary to-accent" />
-              <CardHeader>
-                <div className="flex items-center justify-between mb-3">
-                  <Badge variant="secondary" className="font-semibold">
-                    {article.category}
-                  </Badge>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Icon name="Clock" size={16} />
-                    {article.readTime}
+                <CardContent className="p-6">
+                  <div className={`w-12 h-12 rounded-sm flex items-center justify-center mb-5 ${s.accent ? "bg-red-800" : "bg-red-50"}`}>
+                    <Icon name={s.icon as "Car"} size={22} className={s.accent ? "text-white" : "text-red-700"} />
                   </div>
-                </div>
-                <CardTitle className="text-2xl group-hover:text-primary transition-colors">
-                  {article.title}
-                </CardTitle>
-                <CardDescription className="text-base">
-                  {article.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {article.tags.map(tag => (
-                    <Badge key={tag} variant="outline" className="text-xs">
-                      #{tag}
-                    </Badge>
-                  ))}
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground flex items-center gap-2">
-                    <Icon name="Calendar" size={16} />
-                    {article.date}
-                  </span>
-                  <Button variant="ghost" size="sm" className="group-hover:text-primary">
-                    Читать
-                    <Icon name="ArrowRight" size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  <h3
+                    className={`text-lg font-bold mb-3 ${s.accent ? "text-white" : "text-[#111]"}`}
+                    style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.03em" }}
+                  >
+                    {s.title}
+                  </h3>
+                  <p className={`text-sm leading-relaxed ${s.accent ? "text-white/80" : "text-gray-500"}`}>
+                    {s.desc}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      <section className="py-16 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-2xl mx-auto text-center p-8 shadow-xl border-2">
-            <Icon name="Mail" size={48} className="mx-auto mb-4 text-primary" />
-            <h3 className="text-3xl font-bold mb-4">Подпишись на рассылку</h3>
-            <p className="text-muted-foreground mb-6">
-              Получай свежие статьи и новости прямо на почту
-            </p>
-            <form onSubmit={handleSubscribe} className="flex gap-4 max-w-md mx-auto">
-              <Input 
-                type="email" 
-                placeholder="Введи свой email"
+      {/* HOW IT WORKS */}
+      <section id="how" className="py-20 bg-[#111111]">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="mb-14">
+            <p className="text-red-500 text-sm font-semibold tracking-widest uppercase mb-3">Просто и понятно</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>
+              КАК МЫ РАБОТАЕМ
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-10">
+            {steps.map((step) => (
+              <div key={step.num}>
+                <div className="text-7xl font-bold text-red-700/25 mb-4 leading-none" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                  {step.num}
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                  {step.title}
+                </h3>
+                <p className="text-white/50 leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section id="reviews" className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="mb-14">
+            <p className="text-red-700 text-sm font-semibold tracking-widest uppercase mb-3">Наши клиенты</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#111]" style={{ fontFamily: "'Oswald', sans-serif" }}>
+              ОТЗЫВЫ
+            </h2>
+            <div className="w-14 h-1 bg-red-700 rounded mt-4" />
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {reviews.map((r) => (
+              <Card key={r.name} className="card-hover border-0 shadow-md rounded-sm">
+                <CardContent className="p-7">
+                  <div className="flex gap-1 mb-4">
+                    {Array.from({ length: r.stars }).map((_, i) => (
+                      <Icon key={i} name="Star" size={16} className="text-red-600 fill-red-600" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 leading-relaxed mb-5 text-sm">"{r.text}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 bg-red-700 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                      {r.name[0]}
+                    </div>
+                    <span className="font-semibold text-[#111] text-sm">{r.name}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-20 bg-red-700">
+        <div className="max-w-xl mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            ПОЛУЧИТЕ БЕСПЛАТНУЮ<br />КОНСУЛЬТАЦИЮ
+          </h2>
+          <p className="text-white/80 mb-10 text-lg">
+            Оставьте номер — перезвоним в течение 5 минут
+          </p>
+
+          {submitted ? (
+            <div className="bg-white/15 border border-white/30 rounded-sm p-8 text-white">
+              <Icon name="CheckCircle" size={48} className="mx-auto mb-4" />
+              <p className="text-xl font-bold" style={{ fontFamily: "'Oswald', sans-serif" }}>ЗАЯВКА ПРИНЯТА!</p>
+              <p className="text-white/70 mt-2">Перезвоним в течение 5 минут</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+              <Input
+                type="tel"
+                placeholder="+7 (___) ___-__-__"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1"
+                className="flex-1 bg-white/15 border-white/30 text-white placeholder:text-white/50 rounded-sm focus:border-white"
               />
-              <Button type="submit" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
-                Подписаться
+              <Button
+                type="submit"
+                size="lg"
+                className="bg-[#111] hover:bg-[#222] text-white rounded-sm px-8 font-bold tracking-wide shrink-0"
+                style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}
+              >
+                ПЕРЕЗВОНИТЕ МНЕ
               </Button>
             </form>
-          </Card>
+          )}
         </div>
       </section>
 
-      <footer className="bg-white border-t py-8">
-        <div className="container mx-auto px-4 text-center text-muted-foreground">
-          <p>© 2024 Блог. Все права защищены.</p>
+      {/* FOOTER */}
+      <footer className="bg-[#0d0d0d] py-10 border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 bg-red-700 flex items-center justify-center rounded-sm">
+              <Icon name="Scale" size={15} className="text-white" />
+            </div>
+            <span className="text-white font-bold tracking-wider text-lg" style={{ fontFamily: "'Oswald', sans-serif" }}>
+              ЛЕГИС<span className="text-red-500">ПРО</span>
+            </span>
+          </div>
+          <p className="text-white/30 text-sm">© 2024 ЛегисПро. Все права защищены.</p>
+          <a href="tel:+78001234567" className="text-white/60 hover:text-white text-sm transition-colors">
+            8 800 123-45-67
+          </a>
         </div>
       </footer>
+
     </div>
   );
-};
-
-export default Index;
+}
