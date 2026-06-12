@@ -79,10 +79,12 @@ export default function Index() {
       {/* NAV */}
       <nav className="fixed top-0 inset-x-0 z-50 bg-[#111111]/95 backdrop-blur border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-red-700 flex items-center justify-center rounded-sm">
-              <Icon name="Scale" size={18} className="text-white" />
-            </div>
+          <div className="flex items-center gap-3">
+            <img
+              src="https://cdn.poehali.dev/projects/bae5034d-7fc4-474e-8215-3e70c80b0b04/bucket/58310f75-0d76-462c-9cab-c0847ae16bb9.png"
+              alt="ЛегисПро логотип"
+              className="h-10 w-auto"
+            />
             <span className="text-white text-xl font-bold tracking-wider" style={{ fontFamily: "'Oswald', sans-serif" }}>
               ЛЕГИС<span className="text-red-500">ПРО</span>
             </span>
@@ -307,20 +309,35 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-[#0d0d0d] py-10 border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-red-700 flex items-center justify-center rounded-sm">
-              <Icon name="Scale" size={15} className="text-white" />
-            </div>
+      <footer className="bg-[#0d0d0d] border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row items-start justify-between gap-8">
+          {/* Logo + name */}
+          <div className="flex items-center gap-3 shrink-0">
+            <img
+              src="https://cdn.poehali.dev/projects/bae5034d-7fc4-474e-8215-3e70c80b0b04/bucket/58310f75-0d76-462c-9cab-c0847ae16bb9.png"
+              alt="ЛегисПро логотип"
+              className="h-10 w-auto"
+            />
             <span className="text-white font-bold tracking-wider text-lg" style={{ fontFamily: "'Oswald', sans-serif" }}>
               ЛЕГИС<span className="text-red-500">ПРО</span>
             </span>
           </div>
-          <p className="text-white/30 text-sm">© 2024 ЛегисПро. Все права защищены.</p>
-          <a href="tel:+78001234567" className="text-white/60 hover:text-white text-sm transition-colors">
-            8 800 123-45-67
-          </a>
+
+          {/* Реквизиты */}
+          <div className="text-white/40 text-xs leading-relaxed space-y-1">
+            <p className="text-white/60 font-semibold text-sm mb-2">Реквизиты</p>
+            <p>ИП Ледюкова Диана Евгеньевна</p>
+            <p>ИНН: 410124236711</p>
+            <p>ОГРН: 325410000018892</p>
+          </div>
+
+          {/* Контакт + копирайт */}
+          <div className="text-right space-y-2">
+            <a href="tel:+78001234567" className="block text-white/60 hover:text-white text-sm transition-colors">
+              8 800 123-45-67
+            </a>
+            <p className="text-white/30 text-xs">© 2024 ЛегисПро. Все права защищены.</p>
+          </div>
         </div>
       </footer>
 
