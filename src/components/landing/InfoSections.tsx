@@ -60,17 +60,44 @@ const steps = [
 const reviews = [
   {
     name: "Андрей М.",
-    text: "После ДТП страховая предлагала 80 тыс., ЛегисПро взыскали 340 тыс. Работают чётко и профессионально.",
+    city: "Петропавловск-Камчатский",
+    date: "март 2025",
+    text: "Влетели мне в бок на перекрёстке, страховая упёрлась — насчитали 80 тысяч, хотя бампер и дверь под замену. Ребята сделали свою экспертизу, дошли до суда и взыскали 340 тысяч. Я даже не ожидал такой суммы, честно. Спасибо!",
     stars: 5,
   },
   {
     name: "Елена Р.",
-    text: "Очень быстро оформили ОСАГО, объяснили все нюансы. Цена оказалась ниже, чем в банке.",
+    city: "Елизово",
+    date: "февраль 2025",
+    text: "Оформляла ОСАГО, в банке навязывали кучу допов и выходило дорого. Тут всё по-человечески объяснили, подобрали страховую, вышло заметно дешевле. Заняло минут 20, всё онлайн.",
     stars: 5,
   },
   {
     name: "Дмитрий К.",
-    text: "Помогли с виновником ДТП, который скрылся. Думал, что денег не получу — взыскали всё через суд.",
+    city: "Петропавловск-Камчатский",
+    date: "январь 2025",
+    text: "Виновник ДТП скрылся, я уже думал, что денег не увижу никогда. Здесь подняли запись с камер, привлекли трасолога и через суд всё взыскали. Работают дотошно, держали в курсе на каждом этапе.",
+    stars: 5,
+  },
+  {
+    name: "Ольга С.",
+    city: "Вилючинск",
+    date: "ноябрь 2024",
+    text: "Долго сомневалась, обращаться или нет — боялась, что придётся платить вперёд. По факту не отдала ни рубля до результата, гонорар взяли процентом с выигранного. Всё честно, рекомендую.",
+    stars: 5,
+  },
+  {
+    name: "Сергей П.",
+    city: "Петропавловск-Камчатский",
+    date: "октябрь 2024",
+    text: "Страховая занизила выплату почти в три раза. Сам бы я с ними точно не справился. Юристы спокойно довели дело до конца, добились доплаты плюс неустойку. Единственное — суд немного затянулся, но это уже не к ним вопрос.",
+    stars: 4,
+  },
+  {
+    name: "Марина В.",
+    city: "Елизово",
+    date: "сентябрь 2024",
+    text: "Попала в ДТП впервые, вообще не понимала, что делать. Позвонила, проконсультировали бесплатно прямо по телефону, потом помогли собрать все документы. Спокойно, без воды и навязывания. Очень благодарна за поддержку.",
     stars: 5,
   },
 ];
@@ -185,20 +212,31 @@ export default function InfoSections() {
             <div className="w-14 h-1 bg-red-700 rounded mt-4" />
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {reviews.map((r) => (
-              <Card key={r.name} className="card-hover border-0 shadow-md rounded-sm">
+            {reviews.map((r, idx) => (
+              <Card key={idx} className="card-hover border-0 shadow-md rounded-sm">
                 <CardContent className="p-7">
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: r.stars }).map((_, i) => (
-                      <Icon key={i} name="Star" size={16} className="text-red-600 fill-red-600" />
-                    ))}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex gap-1">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Icon
+                          key={i}
+                          name="Star"
+                          size={16}
+                          className={i < r.stars ? "text-red-600 fill-red-600" : "text-gray-200 fill-gray-200"}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-gray-400 text-xs">{r.date}</span>
                   </div>
                   <p className="text-gray-600 leading-relaxed mb-5 text-sm">"{r.text}"</p>
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 bg-red-700 rounded-full flex items-center justify-center text-white text-sm font-bold">
                       {r.name[0]}
                     </div>
-                    <span className="font-semibold text-[#111] text-sm">{r.name}</span>
+                    <div>
+                      <span className="block font-semibold text-[#111] text-sm leading-tight">{r.name}</span>
+                      <span className="block text-gray-400 text-xs">{r.city}</span>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
