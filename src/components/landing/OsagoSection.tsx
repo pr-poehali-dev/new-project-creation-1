@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 import { PRIMARY_PHONE } from "@/lib/contacts";
 import { sendLead } from "@/lib/sendLead";
+import OsagoCalculator from "@/components/landing/OsagoCalculator";
 
 const facts = [
   {
@@ -80,7 +81,9 @@ export default function OsagoSection() {
           ))}
         </div>
 
-        <div className="bg-[#111111] rounded-sm p-8 md:p-12">
+        <OsagoCalculator />
+
+        <div id="osago-form" className="bg-[#111111] rounded-sm p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: "'Oswald', sans-serif" }}>
