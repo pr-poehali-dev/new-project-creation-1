@@ -174,9 +174,10 @@ export default function InfoSections() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-14">
             <p className="text-red-500 text-sm font-semibold tracking-widest uppercase mb-3">Просто и понятно</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
               КАК МЫ РАБОТАЕМ
             </h2>
+            <div className="w-14 h-1 bg-red-700 rounded" />
           </div>
           <div className="grid md:grid-cols-3 gap-10">
             {steps.map((step) => (
@@ -199,10 +200,10 @@ export default function InfoSections() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-14">
             <p className="text-red-700 text-sm font-semibold tracking-widest uppercase mb-3">Наши клиенты</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#111]" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#111] mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
               ОТЗЫВЫ
             </h2>
-            <div className="w-14 h-1 bg-red-700 rounded mt-4" />
+            <div className="w-14 h-1 bg-red-700 rounded" />
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {reviews.map((r, idx) => (
