@@ -44,6 +44,29 @@ const stats = [
   { icon: "Search", value: "Трасология", label: "профессиональные трасологи" },
 ];
 
+const advantages = [
+  {
+    icon: "Wallet",
+    title: "Работаем без предоплаты",
+    desc: "Вы не платите ни рубля до результата. Наш гонорар — это процент с фактически взысканной суммы. Нет выплаты — нет оплаты.",
+  },
+  {
+    icon: "ShieldCheck",
+    title: "Полный ущерб за авто",
+    desc: "Взыскиваем 100% реального ущерба за повреждение транспортного средства, а не заниженные суммы от страховой компании.",
+  },
+  {
+    icon: "UserCheck",
+    title: "Независимые эксперты",
+    desc: "Привлекаем независимых специалистов для объективной оценки повреждений. Их заключения принимаются судами без вопросов.",
+  },
+  {
+    icon: "Search",
+    title: "Профессиональные трасологи",
+    desc: "Наши трасологи восстанавливают полную картину ДТП по следам и повреждениям — это решающий аргумент в спорных делах.",
+  },
+];
+
 const steps = [
   { num: "01", title: "Звонок", desc: "Бесплатная консультация по вашей ситуации. Оцениваем перспективы." },
   { num: "02", title: "Документы", desc: "Собираем все необходимые документы. Проводим независимую экспертизу." },
@@ -227,6 +250,40 @@ export default function Index() {
                   </p>
                 </CardContent>
               </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ADVANTAGES */}
+      <section id="advantages" className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="mb-14">
+            <p className="text-red-700 text-sm font-semibold tracking-widest uppercase mb-3">Почему мы</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#111] mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
+              НАШИ ПРЕИМУЩЕСТВА
+            </h2>
+            <div className="w-14 h-1 bg-red-700 rounded" />
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {advantages.map((a) => (
+              <div
+                key={a.title}
+                className="card-hover flex gap-5 bg-white border-2 border-gray-100 hover:border-red-200 rounded-sm p-7"
+              >
+                <div className="w-14 h-14 shrink-0 bg-red-50 rounded-sm flex items-center justify-center">
+                  <Icon name={a.icon as "Wallet"} size={26} className="text-red-700" />
+                </div>
+                <div>
+                  <h3
+                    className="text-xl font-bold text-[#111] mb-2"
+                    style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.03em" }}
+                  >
+                    {a.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{a.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
