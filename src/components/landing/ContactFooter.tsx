@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
+import { PHONES, PRIMARY_PHONE } from "@/lib/contacts";
 
 const EMAILJS_SERVICE_ID = "service_ngubj7j";
 const EMAILJS_TEMPLATE_ID = "__ejs-test-mail-service_";
@@ -40,7 +41,7 @@ export default function ContactFooter() {
       setSubmitted(true);
       setPhone("");
     } catch {
-      setError("Ошибка отправки. Позвоните нам напрямую: 8 999 299-74-47");
+      setError(`Ошибка отправки. Позвоните нам напрямую: ${PRIMARY_PHONE.display}`);
     } finally {
       setLoading(false);
     }
@@ -95,22 +96,17 @@ export default function ContactFooter() {
           <div className="mt-10 pt-8 border-t border-white/20">
             <p className="text-white/70 text-sm mb-3">Или позвоните нам напрямую:</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="tel:+79992997447"
-                className="flex items-center gap-2 text-white font-bold text-lg hover:text-white/80 transition-colors"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
-              >
-                <Icon name="Phone" size={18} />
-                8 999 299-74-47
-              </a>
-              <a
-                href="tel:+79098904390"
-                className="flex items-center gap-2 text-white font-bold text-lg hover:text-white/80 transition-colors"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
-              >
-                <Icon name="Phone" size={18} />
-                8 909 890-43-90
-              </a>
+              {PHONES.map((p) => (
+                <a
+                  key={p.tel}
+                  href={`tel:${p.tel}`}
+                  className="flex items-center gap-2 text-white font-bold text-lg hover:text-white/80 transition-colors"
+                  style={{ fontFamily: "'Oswald', sans-serif" }}
+                >
+                  <Icon name="Phone" size={18} />
+                  {p.display}
+                </a>
+              ))}
             </div>
           </div>
         </div>
@@ -136,12 +132,11 @@ export default function ContactFooter() {
 
           {/* Контакт + копирайт */}
           <div className="text-right space-y-2">
-            <a href="tel:+79992997447" className="block text-white/60 hover:text-white text-sm transition-colors">
-              8 999 299-74-47
-            </a>
-            <a href="tel:+79098904390" className="block text-white/60 hover:text-white text-sm transition-colors">
-              8 909 890-43-90
-            </a>
+            {PHONES.map((p) => (
+              <a key={p.tel} href={`tel:${p.tel}`} className="block text-white/60 hover:text-white text-sm transition-colors">
+                {p.display}
+              </a>
+            ))}
             <p className="text-white/30 text-xs">© 2024 ЛегисПро. Все права защищены.</p>
           </div>
         </div>
@@ -149,42 +144,30 @@ export default function ContactFooter() {
 
       {/* FLOATING MESSENGERS */}
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
-        <a
-          href="https://wa.me/79992997447"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp 8 999 299-74-47"
-          className="w-12 h-12 rounded-full bg-[#25D366] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
-        >
-          <Icon name="MessageCircle" size={24} />
-        </a>
-        <a
-          href="https://t.me/79992997447"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Telegram 8 999 299-74-47"
-          className="w-12 h-12 rounded-full bg-[#229ED9] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
-        >
-          <Icon name="Send" size={22} />
-        </a>
-        <a
-          href="https://wa.me/79098904390"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp 8 909 890-43-90"
-          className="w-12 h-12 rounded-full bg-[#25D366] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
-        >
-          <Icon name="MessageCircle" size={24} />
-        </a>
-        <a
-          href="https://t.me/79098904390"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Telegram 8 909 890-43-90"
-          className="w-12 h-12 rounded-full bg-[#229ED9] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
-        >
-          <Icon name="Send" size={22} />
-        </a>
+        {PHONES.map((p) => (
+          <a
+            key={`wa-${p.digits}`}
+            href={`https://wa.me/${p.digits}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`WhatsApp ${p.display}`}
+            className="w-12 h-12 rounded-full bg-[#25D366] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
+          >
+            <Icon name="MessageCircle" size={24} />
+          </a>
+        ))}
+        {PHONES.map((p) => (
+          <a
+            key={`tg-${p.digits}`}
+            href={`https://t.me/${p.digits}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Telegram ${p.display}`}
+            className="w-12 h-12 rounded-full bg-[#229ED9] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
+          >
+            <Icon name="Send" size={22} />
+          </a>
+        ))}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import { PRIMARY_PHONE } from "@/lib/contacts";
 
 const stats = [
   { icon: "Wallet", value: "0 ₽", label: "работаем без предоплаты" },
@@ -51,7 +52,7 @@ export default function HeroSection() {
                 БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ
               </Button>
             </a>
-            <a href="tel:+79992997447">
+            <a href={`tel:${PRIMARY_PHONE.tel}`}>
               <Button
                 size="lg"
                 variant="outline"

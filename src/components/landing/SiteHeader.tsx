@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import { PRIMARY_PHONE } from "@/lib/contacts";
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,10 +20,10 @@ export default function SiteHeader() {
           <a href="#how" className="hover:text-white transition-colors">Как работаем</a>
           <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
         </div>
-        <a href="tel:+79992997447" className="hidden sm:block">
+        <a href={`tel:${PRIMARY_PHONE.tel}`} className="hidden sm:block">
           <Button className="bg-red-700 hover:bg-red-800 text-white text-sm px-5 h-9 rounded-sm">
             <Icon name="Phone" size={15} className="mr-2" />
-            8 999 299-74-47
+            {PRIMARY_PHONE.display}
           </Button>
         </a>
         <button
@@ -40,10 +41,10 @@ export default function SiteHeader() {
           <a href="#advantages" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Преимущества</a>
           <a href="#how" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Как работаем</a>
           <a href="#reviews" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Отзывы</a>
-          <a href="tel:+79992997447" onClick={() => setMenuOpen(false)}>
+          <a href={`tel:${PRIMARY_PHONE.tel}`} onClick={() => setMenuOpen(false)}>
             <Button className="w-full bg-red-700 hover:bg-red-800 text-white text-sm h-10 rounded-sm">
               <Icon name="Phone" size={15} className="mr-2" />
-              8 999 299-74-47
+              {PRIMARY_PHONE.display}
             </Button>
           </a>
         </div>
