@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,25 +68,41 @@ export default function ContactFooter() {
             </div>
           ) : (
             <div>
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-                <Input
-                  type="tel"
-                  placeholder="+7 (___) ___-__-__"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                  disabled={loading}
-                  className="flex-1 bg-white/15 border-white/30 text-white placeholder:text-white/50 rounded-sm focus:border-white"
-                />
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={loading}
-                  className="bg-[#111] hover:bg-[#222] text-white rounded-sm px-8 font-bold tracking-wide shrink-0"
-                  style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}
-                >
-                  {loading ? "ОТПРАВКА..." : "ПЕРЕЗВОНИТЕ МНЕ"}
-                </Button>
+              <form onSubmit={handleSubmit}>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Input
+                    type="tel"
+                    placeholder="+7 (___) ___-__-__"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                    disabled={loading}
+                    className="flex-1 bg-white/15 border-white/30 text-white placeholder:text-white/50 rounded-sm focus:border-white"
+                  />
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={loading}
+                    className="bg-[#111] hover:bg-[#222] text-white rounded-sm px-8 font-bold tracking-wide shrink-0"
+                    style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}
+                  >
+                    {loading ? "ОТПРАВКА..." : "ПЕРЕЗВОНИТЕ МНЕ"}
+                  </Button>
+                </div>
+                <label className="flex items-start gap-2 mt-4 text-left text-white/70 text-xs leading-relaxed cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    disabled={loading}
+                    className="mt-0.5 shrink-0 accent-[#111]"
+                  />
+                  <span>
+                    Я согласен на обработку персональных данных и принимаю условия{" "}
+                    <Link to="/privacy" target="_blank" className="underline hover:text-white">
+                      политики конфиденциальности
+                    </Link>
+                  </span>
+                </label>
               </form>
               {error && (
                 <p className="text-white/80 text-sm mt-3">{error}</p>
@@ -137,7 +154,10 @@ export default function ContactFooter() {
                 {p.display}
               </a>
             ))}
-            <p className="text-white/30 text-xs">© 2024 ЛегисПро. Все права защищены.</p>
+            <Link to="/privacy" className="block text-white/40 hover:text-white text-xs transition-colors">
+              Политика конфиденциальности
+            </Link>
+            <p className="text-white/30 text-xs">© 2024 {COMPANY.name}. Все права защищены.</p>
           </div>
         </div>
       </footer>
