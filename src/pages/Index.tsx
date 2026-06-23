@@ -134,6 +134,7 @@ export default function Index() {
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm text-white/70">
             <a href="#services" className="hover:text-white transition-colors">Услуги</a>
+            <a href="#advantages" className="hover:text-white transition-colors">Преимущества</a>
             <a href="#how" className="hover:text-white transition-colors">Как работаем</a>
             <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
           </div>
