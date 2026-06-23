@@ -96,6 +96,7 @@ export default function Index() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -138,13 +139,35 @@ export default function Index() {
             <a href="#how" className="hover:text-white transition-colors">Как работаем</a>
             <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
           </div>
-          <a href="tel:+79992997447">
+          <a href="tel:+79992997447" className="hidden sm:block">
             <Button className="bg-red-700 hover:bg-red-800 text-white text-sm px-5 h-9 rounded-sm">
               <Icon name="Phone" size={15} className="mr-2" />
               8 999 299-74-47
             </Button>
           </a>
+          <button
+            className="md:hidden text-white p-1"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Меню"
+          >
+            <Icon name={menuOpen ? "X" : "Menu"} size={26} />
+          </button>
         </div>
+
+        {menuOpen && (
+          <div className="md:hidden bg-[#111111] border-t border-white/10 px-4 py-4 flex flex-col gap-4 text-white/80">
+            <a href="#services" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Услуги</a>
+            <a href="#advantages" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Преимущества</a>
+            <a href="#how" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Как работаем</a>
+            <a href="#reviews" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Отзывы</a>
+            <a href="tel:+79992997447" onClick={() => setMenuOpen(false)}>
+              <Button className="w-full bg-red-700 hover:bg-red-800 text-white text-sm h-10 rounded-sm">
+                <Icon name="Phone" size={15} className="mr-2" />
+                8 999 299-74-47
+              </Button>
+            </a>
+          </div>
+        )}
       </nav>
 
       {/* HERO */}
