@@ -448,6 +448,46 @@ export default function Index() {
         </div>
       </footer>
 
+      {/* FLOATING MESSENGERS */}
+      <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
+        <a
+          href="https://wa.me/79992997447"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp 8 999 299-74-47"
+          className="w-12 h-12 rounded-full bg-[#25D366] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
+        >
+          <Icon name="MessageCircle" size={24} />
+        </a>
+        <a
+          href="https://t.me/79992997447"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Telegram 8 999 299-74-47"
+          className="w-12 h-12 rounded-full bg-[#229ED9] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
+        >
+          <Icon name="Send" size={22} />
+        </a>
+        <a
+          href="https://wa.me/79098904390"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp 8 909 890-43-90"
+          className="w-12 h-12 rounded-full bg-[#25D366] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
+        >
+          <Icon name="MessageCircle" size={24} />
+        </a>
+        <a
+          href="https://t.me/79098904390"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Telegram 8 909 890-43-90"
+          className="w-12 h-12 rounded-full bg-[#229ED9] hover:scale-110 transition-transform shadow-lg flex items-center justify-center text-white"
+        >
+          <Icon name="Send" size={22} />
+        </a>
+      </div>
+
     </div>
   );
 }
