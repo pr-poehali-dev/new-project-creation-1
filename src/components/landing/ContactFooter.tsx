@@ -4,7 +4,7 @@ import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
-import { PHONES, PRIMARY_PHONE, COMPANY } from "@/lib/contacts";
+import { PHONES, PRIMARY_PHONE, COMPANY, WORK_HOURS } from "@/lib/contacts";
 
 const EMAILJS_SERVICE_ID = "service_ngubj7j";
 const EMAILJS_TEMPLATE_ID = "__ejs-test-mail-service_";
@@ -125,6 +125,10 @@ export default function ContactFooter() {
                 </a>
               ))}
             </div>
+            <div className="mt-6 flex items-center justify-center gap-2 text-white/70 text-sm">
+              <Icon name="Clock" size={16} />
+              <span>{WORK_HOURS.weekdays} · {WORK_HOURS.weekend}</span>
+            </div>
           </div>
         </div>
       </section>
@@ -154,6 +158,7 @@ export default function ContactFooter() {
                 {p.display}
               </a>
             ))}
+            <p className="text-white/40 text-xs">{WORK_HOURS.short}</p>
             <Link to="/privacy" className="block text-white/40 hover:text-white text-xs transition-colors">
               Политика конфиденциальности
             </Link>

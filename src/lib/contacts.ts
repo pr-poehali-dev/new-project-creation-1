@@ -7,6 +7,12 @@ export const PRIMARY_PHONE = PHONES[0];
 
 export const EMAIL = "legis-pro@outlook.com";
 
+export const WORK_HOURS = {
+  weekdays: "Пн–Пт: 10:00 — 19:00",
+  weekend: "Сб, Вс: выходной",
+  short: "Пн–Пт 10:00–19:00",
+};
+
 export const COMPANY = {
   name: "ЛегисПро",
   legalName: "ИП Ледюкова Диана Евгеньевна",
