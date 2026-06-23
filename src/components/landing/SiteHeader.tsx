@@ -19,6 +19,7 @@ export default function SiteHeader() {
           <a href="#osago" className="hover:text-white transition-colors">ОСАГО</a>
           <a href="#advantages" className="hover:text-white transition-colors">Преимущества</a>
           <a href="#how" className="hover:text-white transition-colors">Как работаем</a>
+          <a href="#payment-steps" className="hover:text-white transition-colors">Этапы выплаты</a>
           <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
           <a href="#contacts" className="hover:text-white transition-colors">Контакты</a>
         </div>
@@ -43,6 +44,7 @@ export default function SiteHeader() {
           <a href="#osago" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">ОСАГО</a>
           <a href="#advantages" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Преимущества</a>
           <a href="#how" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Как работаем</a>
+          <a href="#payment-steps" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Этапы выплаты</a>
           <a href="#reviews" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Отзывы</a>
           <a href="#contacts" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Контакты</a>
           <a href={`tel:${PRIMARY_PHONE.tel}`} onClick={() => setMenuOpen(false)}>
