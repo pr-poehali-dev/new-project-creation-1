@@ -38,10 +38,10 @@ const services = [
 ];
 
 const stats = [
-  { value: "0 ₽", label: "работаем без предоплаты" },
-  { value: "100%", label: "ущерб за повреждение авто" },
-  { value: "Эксперты", label: "независимые специалисты" },
-  { value: "Трасология", label: "профессиональные трасологи" },
+  { icon: "Wallet", value: "0 ₽", label: "работаем без предоплаты" },
+  { icon: "ShieldCheck", value: "100%", label: "ущерб за повреждение авто" },
+  { icon: "UserCheck", value: "Эксперты", label: "независимые специалисты" },
+  { icon: "Search", value: "Трасология", label: "профессиональные трасологи" },
 ];
 
 const steps = [
@@ -184,7 +184,8 @@ export default function Index() {
                 key={s.value}
                 className="bg-white/5 border border-white/10 rounded-sm p-6 text-center hover:bg-white/10 hover:border-red-700/40 transition-all"
               >
-                <div className="text-4xl font-bold text-red-500 mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>
+                <Icon name={s.icon as "Wallet"} size={28} className="text-red-500 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-white mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>
                   {s.value}
                 </div>
                 <div className="text-white/50 text-sm">{s.label}</div>
