@@ -3,7 +3,7 @@ import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
-import { PHONES, PRIMARY_PHONE } from "@/lib/contacts";
+import { PHONES, PRIMARY_PHONE, COMPANY } from "@/lib/contacts";
 
 const EMAILJS_SERVICE_ID = "service_ngubj7j";
 const EMAILJS_TEMPLATE_ID = "__ejs-test-mail-service_";
@@ -125,9 +125,9 @@ export default function ContactFooter() {
           {/* Реквизиты */}
           <div className="text-white/40 text-xs leading-relaxed space-y-1">
             <p className="text-white/60 font-semibold text-sm mb-2">Реквизиты</p>
-            <p>ИП Ледюкова Диана Евгеньевна</p>
-            <p>ИНН: 410124236711</p>
-            <p>ОГРН: 325410000018892</p>
+            <p>{COMPANY.legalName}</p>
+            <p>ИНН: {COMPANY.inn}</p>
+            <p>ОГРН: {COMPANY.ogrn}</p>
           </div>
 
           {/* Контакт + копирайт */}

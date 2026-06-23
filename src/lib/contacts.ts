@@ -4,3 +4,12 @@ export const PHONES = [
 ];
 
 export const PRIMARY_PHONE = PHONES[0];
+
+export const EMAIL = "legis-pro@outlook.com";
+
+export const COMPANY = {
+  name: "ЛегисПро",
+  legalName: "ИП Ледюкова Диана Евгеньевна",
+  inn: "410124236711",
+  ogrn: "325410000018892",
+};
