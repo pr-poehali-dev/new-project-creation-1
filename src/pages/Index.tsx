@@ -414,6 +414,28 @@ export default function Index() {
               )}
             </div>
           )}
+
+          <div className="mt-10 pt-8 border-t border-white/20">
+            <p className="text-white/70 text-sm mb-3">Или позвоните нам напрямую:</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="tel:+79992997447"
+                className="flex items-center gap-2 text-white font-bold text-lg hover:text-white/80 transition-colors"
+                style={{ fontFamily: "'Oswald', sans-serif" }}
+              >
+                <Icon name="Phone" size={18} />
+                8 999 299-74-47
+              </a>
+              <a
+                href="tel:+79098904390"
+                className="flex items-center gap-2 text-white font-bold text-lg hover:text-white/80 transition-colors"
+                style={{ fontFamily: "'Oswald', sans-serif" }}
+              >
+                <Icon name="Phone" size={18} />
+                8 909 890-43-90
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
