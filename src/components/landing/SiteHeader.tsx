@@ -16,6 +16,7 @@ export default function SiteHeader() {
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm text-white/70">
           <a href="#services" className="hover:text-white transition-colors">Услуги</a>
+          <a href="#osago" className="hover:text-white transition-colors">ОСАГО</a>
           <a href="#advantages" className="hover:text-white transition-colors">Преимущества</a>
           <a href="#how" className="hover:text-white transition-colors">Как работаем</a>
           <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
@@ -38,6 +39,7 @@ export default function SiteHeader() {
       {menuOpen && (
         <div className="md:hidden bg-[#111111] border-t border-white/10 px-4 py-4 flex flex-col gap-4 text-white/80">
           <a href="#services" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Услуги</a>
+          <a href="#osago" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">ОСАГО</a>
           <a href="#advantages" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Преимущества</a>
           <a href="#how" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Как работаем</a>
           <a href="#reviews" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Отзывы</a>

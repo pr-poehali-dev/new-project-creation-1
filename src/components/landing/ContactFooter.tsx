@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
 import { PHONES, PRIMARY_PHONE, COMPANY, WORK_HOURS } from "@/lib/contacts";
-
-const EMAILJS_SERVICE_ID = "service_ngubj7j";
-const EMAILJS_TEMPLATE_ID = "__ejs-test-mail-service_";
-const EMAILJS_PUBLIC_KEY = "6XBgBCrsMs5LWl-Kg4o4Y";
-const SEND_LEAD_URL = "https://functions.poehali.dev/ce303609-fb70-48d8-9abc-3fa6feac3a5b";
+import { sendLead } from "@/lib/sendLead";
 
 export default function ContactFooter() {
   const [phone, setPhone] = useState("");
@@ -22,23 +17,11 @@ export default function ContactFooter() {
     setLoading(true);
     setError("");
     try {
-      await Promise.all([
-        emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          {
-            from_name: "Заявка с сайта ЛегисПро",
-            message: `Новая заявка на консультацию!\nТелефон: ${phone}`,
-            reply_to: "legis-pro@outlook.com",
-          },
-          EMAILJS_PUBLIC_KEY
-        ),
-        fetch(SEND_LEAD_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ phone }),
-        }),
-      ]);
+      await sendLead(
+        phone,
+        "Заявка с сайта ЛегисПро",
+        `Новая заявка на консультацию!\nТелефон: ${phone}`
+      );
       setSubmitted(true);
       setPhone("");
     } catch {
