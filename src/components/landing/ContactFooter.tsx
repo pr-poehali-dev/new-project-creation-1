@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
-import { PHONES, PRIMARY_PHONE, COMPANY, WORK_HOURS } from "@/lib/contacts";
+import { PHONES, PRIMARY_PHONE, COMPANY, WORK_HOURS, ADDRESS, EMAIL } from "@/lib/contacts";
 import { sendLead } from "@/lib/sendLead";
 
 export default function ContactFooter() {
@@ -127,11 +127,13 @@ export default function ContactFooter() {
           </div>
 
           {/* Реквизиты */}
-          <div className="text-white/40 text-xs leading-relaxed space-y-1">
+          <div className="text-white/40 text-xs leading-relaxed space-y-1 max-w-xs">
             <p className="text-white/60 font-semibold text-sm mb-2">Реквизиты</p>
             <p>{COMPANY.legalName}</p>
             <p>ИНН: {COMPANY.inn}</p>
-            <p>ОГРН: {COMPANY.ogrn}</p>
+            <p>ОГРНИП: {COMPANY.ogrnip}</p>
+            <p>Адрес: {ADDRESS.full}</p>
+            <p>E-mail: {EMAIL}</p>
           </div>
 
           {/* Контакт + копирайт */}

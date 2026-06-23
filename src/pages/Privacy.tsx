@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
-import { COMPANY, EMAIL, PHONES } from "@/lib/contacts";
+import { COMPANY, EMAIL, PHONES, ADDRESS } from "@/lib/contacts";
 
 export default function Privacy() {
   return (
@@ -70,7 +70,8 @@ export default function Privacy() {
             <h2 className="text-lg font-bold text-[#111] mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>6. Контакты Оператора</h2>
             <p>{COMPANY.legalName}</p>
             <p>ИНН: {COMPANY.inn}</p>
-            <p>ОГРН: {COMPANY.ogrn}</p>
+            <p>ОГРНИП: {COMPANY.ogrnip}</p>
+            <p>Адрес: {ADDRESS.full}</p>
             <p>E-mail: <a href={`mailto:${EMAIL}`} className="text-red-700 hover:underline">{EMAIL}</a></p>
             <p>Телефон: {PHONES.map((p) => p.display).join(", ")}</p>
           </section>
