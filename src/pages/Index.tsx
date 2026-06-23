@@ -105,11 +105,6 @@ export default function Index() {
       <nav className="fixed top-0 inset-x-0 z-50 bg-[#111111]/95 backdrop-blur border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img
-              src="https://cdn.poehali.dev/projects/bae5034d-7fc4-474e-8215-3e70c80b0b04/bucket/58310f75-0d76-462c-9cab-c0847ae16bb9.png"
-              alt="ЛегисПро логотип"
-              className="h-10 w-auto"
-            />
             <span className="text-white text-xl font-bold tracking-wider" style={{ fontFamily: "'Oswald', sans-serif" }}>
               ЛЕГИС<span className="text-red-500">ПРО</span>
             </span>
@@ -345,11 +340,6 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col md:flex-row items-start justify-between gap-8">
           {/* Logo + name */}
           <div className="flex items-center gap-3 shrink-0">
-            <img
-              src="https://cdn.poehali.dev/projects/bae5034d-7fc4-474e-8215-3e70c80b0b04/bucket/58310f75-0d76-462c-9cab-c0847ae16bb9.png"
-              alt="ЛегисПро логотип"
-              className="h-10 w-auto"
-            />
             <span className="text-white font-bold tracking-wider text-lg" style={{ fontFamily: "'Oswald', sans-serif" }}>
               ЛЕГИС<span className="text-red-500">ПРО</span>
             </span>
