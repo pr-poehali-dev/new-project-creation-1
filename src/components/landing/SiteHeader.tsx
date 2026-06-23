@@ -20,6 +20,7 @@ export default function SiteHeader() {
           <a href="#advantages" className="hover:text-white transition-colors">Преимущества</a>
           <a href="#how" className="hover:text-white transition-colors">Как работаем</a>
           <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
+          <a href="#contacts" className="hover:text-white transition-colors">Контакты</a>
         </div>
         <a href={`tel:${PRIMARY_PHONE.tel}`} className="hidden sm:block">
           <Button className="bg-red-700 hover:bg-red-800 text-white text-sm px-5 h-9 rounded-sm">
@@ -43,6 +44,7 @@ export default function SiteHeader() {
           <a href="#advantages" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Преимущества</a>
           <a href="#how" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Как работаем</a>
           <a href="#reviews" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Отзывы</a>
+          <a href="#contacts" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Контакты</a>
           <a href={`tel:${PRIMARY_PHONE.tel}`} onClick={() => setMenuOpen(false)}>
             <Button className="w-full bg-red-700 hover:bg-red-800 text-white text-sm h-10 rounded-sm">
               <Icon name="Phone" size={15} className="mr-2" />
