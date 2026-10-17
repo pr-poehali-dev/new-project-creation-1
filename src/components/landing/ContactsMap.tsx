@@ -55,11 +55,35 @@ export default function ContactsMap() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1" style={{ fontFamily: "'Oswald', sans-serif" }}>Телефоны</h3>
-                {PHONES.map((p) => (
-                  <a key={p.tel} href={`tel:${p.tel}`} className="block text-white/60 hover:text-[#d4a537] text-sm transition-colors">
-                    {p.display}
-                  </a>
-                ))}
+                <div className="space-y-2 mt-2">
+                  {PHONES.map((p) => (
+                    <div key={p.tel} className="flex flex-wrap items-center gap-2">
+                      <a href={`tel:${p.tel}`} className="text-white/80 hover:text-[#d4a537] text-sm font-medium transition-colors min-w-[150px]">
+                        {p.display}
+                      </a>
+                      <a
+                        href={`https://wa.me/${p.digits}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Написать в WhatsApp ${p.display}`}
+                        className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#1ebe5b] text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors"
+                      >
+                        <Icon name="MessageCircle" size={14} />
+                        WhatsApp
+                      </a>
+                      <a
+                        href={`https://t.me/+${p.digits}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Написать в Telegram ${p.display}`}
+                        className="inline-flex items-center gap-1.5 bg-[#229ED9] hover:bg-[#1c8cc2] text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors"
+                      >
+                        <Icon name="Send" size={14} />
+                        Telegram
+                      </a>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
