@@ -7,6 +7,7 @@ import { PHONES, PRIMARY_PHONE, COMPANY, WORK_HOURS, ADDRESS, EMAIL, SITE, TELEG
 import { sendLead } from "@/lib/sendLead";
 
 export default function ContactFooter() {
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -17,13 +18,10 @@ export default function ContactFooter() {
     setLoading(true);
     setError("");
     try {
-      await sendLead(
-        phone,
-        "Заявка с сайта ЛЕГИС ПРО",
-        `Новая заявка на консультацию!\nТелефон: ${phone}`
-      );
+      await sendLead({ name, phone, subject: "Бесплатная консультация" });
       setSubmitted(true);
       setPhone("");
+      setName("");
     } catch {
       setError(`Ошибка отправки. Позвоните нам напрямую: ${PRIMARY_PHONE.display}`);
     } finally {
@@ -55,6 +53,15 @@ export default function ContactFooter() {
             <div className="bg-[#1a1d23] border border-[#d4a537]/40 rounded-xl p-6 md:p-8">
               <form onSubmit={handleSubmit}>
                 <div className="flex flex-col sm:flex-row gap-3">
+                  <Input
+                    type="text"
+                    placeholder="Ваше имя"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    disabled={loading}
+                    className="flex-1 h-11 bg-[#0d0f12] border-white/10 text-white placeholder:text-white/40 rounded-lg focus-visible:ring-[#d4a537] focus:border-[#d4a537]"
+                  />
                   <Input
                     type="tel"
                     placeholder="+7 (___) ___-__-__"

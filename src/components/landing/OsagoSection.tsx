@@ -26,6 +26,7 @@ const facts = [
 ];
 
 export default function OsagoSection() {
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -36,13 +37,10 @@ export default function OsagoSection() {
     setLoading(true);
     setError("");
     try {
-      await sendLead(
-        phone,
-        "Заявка на оформление ОСАГО",
-        `Новая заявка на оформление ОСАГО!\nТелефон: ${phone}`
-      );
+      await sendLead({ name, phone, subject: "Оформление ОСАГО" });
       setSubmitted(true);
       setPhone("");
+      setName("");
     } catch {
       setError(`Ошибка отправки. Позвоните нам напрямую: ${PRIMARY_PHONE.display}`);
     } finally {
@@ -102,6 +100,15 @@ export default function OsagoSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
+                <Input
+                  type="text"
+                  placeholder="Ваше имя"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  disabled={loading}
+                  className="h-11 mb-3 bg-[#0d0f12] border-white/10 text-white placeholder:text-white/40 rounded-lg focus-visible:ring-[#d4a537] focus:border-[#d4a537]"
+                />
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Input
                     type="tel"

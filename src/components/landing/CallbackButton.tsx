@@ -8,6 +8,7 @@ import { sendLead } from "@/lib/sendLead";
 
 export default function CallbackButton() {
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ export default function CallbackButton() {
       setSubmitted(false);
       setError("");
       setPhone("");
+      setName("");
     }, 300);
   };
 
@@ -27,13 +29,10 @@ export default function CallbackButton() {
     setLoading(true);
     setError("");
     try {
-      await sendLead(
-        phone,
-        "Заказ обратного звонка",
-        `Новый заказ обратного звонка!\nТелефон: ${phone}`
-      );
+      await sendLead({ name, phone, subject: "Обратный звонок" });
       setSubmitted(true);
       setPhone("");
+      setName("");
     } catch {
       setError(`Ошибка отправки. Позвоните нам напрямую: ${PRIMARY_PHONE.display}`);
     } finally {
@@ -89,6 +88,15 @@ export default function CallbackButton() {
                   Оставьте номер — перезвоним в течение 5 минут и бесплатно проконсультируем.
                 </p>
                 <form onSubmit={handleSubmit}>
+                  <Input
+                    type="text"
+                    placeholder="Ваше имя"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    disabled={loading}
+                    className="h-11 bg-[#0d0f12] border-white/10 text-white placeholder:text-white/40 rounded-lg focus-visible:ring-[#d4a537] focus:border-[#d4a537] mb-3"
+                  />
                   <Input
                     type="tel"
                     placeholder="+7 (___) ___-__-__"
