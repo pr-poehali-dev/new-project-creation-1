@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
+import PhoneInput from "@/components/landing/PhoneInput";
 import { PHONES, PRIMARY_PHONE, COMPANY, WORK_HOURS, ADDRESS, EMAIL, SITE, TELEGRAM, TWOGIS } from "@/lib/contacts";
 import { sendLead } from "@/lib/sendLead";
 
@@ -62,11 +63,9 @@ export default function ContactFooter() {
                     disabled={loading}
                     className="flex-1 h-11 bg-[#0d0f12] border-white/10 text-white placeholder:text-white/40 rounded-lg focus-visible:ring-[#d4a537] focus:border-[#d4a537]"
                   />
-                  <Input
-                    type="tel"
-                    placeholder="+7 (___) ___-__-__"
+                  <PhoneInput
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onValueChange={setPhone}
                     required
                     disabled={loading}
                     className="flex-1 h-11 bg-[#0d0f12] border-white/10 text-white placeholder:text-white/40 rounded-lg focus-visible:ring-[#d4a537] focus:border-[#d4a537]"

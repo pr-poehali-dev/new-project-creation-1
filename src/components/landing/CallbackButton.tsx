@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
+import PhoneInput from "@/components/landing/PhoneInput";
 import { PRIMARY_PHONE } from "@/lib/contacts";
 import { sendLead } from "@/lib/sendLead";
 
@@ -97,11 +98,9 @@ export default function CallbackButton() {
                     disabled={loading}
                     className="h-11 bg-[#0d0f12] border-white/10 text-white placeholder:text-white/40 rounded-lg focus-visible:ring-[#d4a537] focus:border-[#d4a537] mb-3"
                   />
-                  <Input
-                    type="tel"
-                    placeholder="+7 (___) ___-__-__"
+                  <PhoneInput
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onValueChange={setPhone}
                     required
                     disabled={loading}
                     className="h-11 bg-[#0d0f12] border-white/10 text-white placeholder:text-white/40 rounded-lg focus-visible:ring-[#d4a537] focus:border-[#d4a537] mb-4"
