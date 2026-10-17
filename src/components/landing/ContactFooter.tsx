@@ -97,7 +97,7 @@ export default function ContactFooter() {
 
           <div className="mt-10 pt-8 border-t border-white/10">
             <p className="text-white/60 text-sm mb-3">Или позвоните нам напрямую:</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col items-center justify-center gap-3">
               {PHONES.map((p) => (
                 <a
                   key={p.tel}
@@ -193,7 +193,7 @@ export default function ContactFooter() {
 
       {/* FLOATING MESSENGERS */}
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
-        {PHONES.map((p) => (
+        {PHONES.slice(0, 1).map((p) => (
           <a
             key={`wa-${p.digits}`}
             href={`https://wa.me/${p.digits}`}
