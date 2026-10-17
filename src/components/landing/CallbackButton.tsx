@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
 import PhoneInput from "@/components/landing/PhoneInput";
-import { PRIMARY_PHONE } from "@/lib/contacts";
+import { PRIMARY_PHONE, QUESTIONS_PHONE } from "@/lib/contacts";
 import { sendLead } from "@/lib/sendLead";
 
 export default function CallbackButton() {
@@ -35,7 +35,7 @@ export default function CallbackButton() {
       setPhone("");
       setName("");
     } catch {
-      setError(`Ошибка отправки. Позвоните нам напрямую: ${PRIMARY_PHONE.display}`);
+      setError(`Ошибка отправки. Позвоните нам напрямую: ${PRIMARY_PHONE.display} или ${QUESTIONS_PHONE.display}`);
     } finally {
       setLoading(false);
     }

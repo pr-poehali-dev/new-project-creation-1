@@ -1,6 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Icon from "@/components/ui/icon";
-import { PRIMARY_PHONE } from "@/lib/contacts";
+import { PRIMARY_PHONE, QUESTIONS_PHONE } from "@/lib/contacts";
 
 const OSWALD = { fontFamily: "'Oswald', sans-serif" };
 
@@ -115,14 +115,19 @@ export default function FaqSection() {
             <p className="text-xl font-bold text-white uppercase" style={OSWALD}>Не нашли ответ на свой вопрос?</p>
             <p className="text-white/60 text-sm mt-1">Позвоните — бесплатно разберём вашу ситуацию</p>
           </div>
-          <a
-            href={`tel:${PRIMARY_PHONE.tel}`}
-            className="inline-flex items-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] font-bold px-6 h-12 rounded-lg transition-colors shrink-0"
-            style={{ ...OSWALD, letterSpacing: "0.06em" }}
-          >
-            <Icon name="Phone" size={18} />
-            {PRIMARY_PHONE.display}
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+            {[PRIMARY_PHONE, QUESTIONS_PHONE].map((p) => (
+              <a
+                key={p.tel}
+                href={`tel:${p.tel}`}
+                className="inline-flex items-center justify-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] font-bold px-6 h-12 rounded-lg transition-colors"
+                style={{ ...OSWALD, letterSpacing: "0.06em" }}
+              >
+                <Icon name="Phone" size={18} />
+                {p.display}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

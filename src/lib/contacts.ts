@@ -5,6 +5,8 @@ export const PHONES = [
 
 export const PRIMARY_PHONE = PHONES[0];
 
+export const QUESTIONS_PHONE = PHONES[1];
+
 export const EMAIL = "legis-pro@outlook.com";
 
 export const SITE = { display: "legis-pro.ru", url: "https://legis-pro.ru" };

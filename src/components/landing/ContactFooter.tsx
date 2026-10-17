@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
 import PhoneInput from "@/components/landing/PhoneInput";
-import { PHONES, PRIMARY_PHONE, COMPANY, WORK_HOURS, ADDRESS, EMAIL, SITE, TELEGRAM, TWOGIS } from "@/lib/contacts";
+import { PHONES, PRIMARY_PHONE, QUESTIONS_PHONE, COMPANY, WORK_HOURS, ADDRESS, EMAIL, SITE, TELEGRAM, TWOGIS } from "@/lib/contacts";
 import { sendLead } from "@/lib/sendLead";
 
 export default function ContactFooter() {
@@ -24,7 +24,7 @@ export default function ContactFooter() {
       setPhone("");
       setName("");
     } catch {
-      setError(`Ошибка отправки. Позвоните нам напрямую: ${PRIMARY_PHONE.display}`);
+      setError(`Ошибка отправки. Позвоните нам напрямую: ${PRIMARY_PHONE.display} или ${QUESTIONS_PHONE.display}`);
     } finally {
       setLoading(false);
     }
