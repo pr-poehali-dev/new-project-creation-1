@@ -1,9 +1,7 @@
-import emailjs from "@emailjs/browser";
+import { EMAIL } from "@/lib/contacts";
 
-const EMAILJS_SERVICE_ID = "service_ngubj7j";
-const EMAILJS_TEMPLATE_ID = "__ejs-test-mail-service_";
-const EMAILJS_PUBLIC_KEY = "6XBgBCrsMs5LWl-Kg4o4Y";
 const SEND_LEAD_URL = "https://functions.poehali.dev/ce303609-fb70-48d8-9abc-3fa6feac3a5b";
+const EMAIL_URL = `https://formsubmit.co/ajax/${EMAIL}`;
 
 interface Lead {
   name: string;
@@ -11,26 +9,37 @@ interface Lead {
   subject: string;
 }
 
-export async function sendLead({ name, phone, subject }: Lead) {
-  const message = `${subject}\nИмя: ${name || "не указано"}\nТелефон: ${phone}`;
-
-  const [telegram, email] = await Promise.allSettled([
-    fetch(SEND_LEAD_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, phone, subject }),
-    }).then((res) => {
-      if (!res.ok) throw new Error("telegram failed");
+async function sendEmail({ name, phone, subject }: Lead) {
+  const res = await fetch(EMAIL_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      _subject: `Заявка с сайта: ${subject}`,
+      _template: "table",
+      _captcha: "false",
+      "Тип заявки": subject,
+      "Имя": name || "не указано",
+      "Телефон": phone,
+      "Дата": new Date().toLocaleString("ru-RU", { timeZone: "Asia/Kamchatka" }),
     }),
-    emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      { from_name: subject, message, reply_to: "legis-pro@outlook.com" },
-      EMAILJS_PUBLIC_KEY
-    ),
-  ]);
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || String(data.success) !== "true") throw new Error("email failed");
+}
 
-  if (telegram.status === "rejected" && email.status === "rejected") {
+async function sendTelegram(lead: Lead) {
+  const res = await fetch(SEND_LEAD_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(lead),
+  });
+  if (!res.ok) throw new Error("telegram failed");
+}
+
+export async function sendLead(lead: Lead) {
+  const [email, telegram] = await Promise.allSettled([sendEmail(lead), sendTelegram(lead)]);
+
+  if (email.status === "rejected" && telegram.status === "rejected") {
     throw new Error("send failed");
   }
 }
