@@ -1,5 +1,5 @@
 import Icon from "@/components/ui/icon";
-import { PRIMARY_PHONE } from "@/lib/contacts";
+import { PHONES } from "@/lib/contacts";
 
 const HERO_BG =
   "https://cdn.poehali.dev/projects/bae5034d-7fc4-474e-8215-3e70c80b0b04/files/f89ecc28-463e-42cb-8e05-09fda0355ef6.jpg";
@@ -58,14 +58,17 @@ export default function HeroSection() {
             Оплата только по результату — вы ничем не рискуете.
           </p>
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 animate-fade-up animate-fade-up-delay-3">
-            <a
-              href={`tel:${PRIMARY_PHONE.tel}`}
-              className="inline-flex items-center justify-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] px-6 h-12 rounded-lg text-base font-bold whitespace-nowrap transition-colors"
-              style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.06em" }}
-            >
-              <Icon name="Phone" size={18} />
-              ПОЗВОНИТЬ {PRIMARY_PHONE.display}
-            </a>
+            {PHONES.map((p) => (
+              <a
+                key={p.tel}
+                href={`tel:${p.tel}`}
+                className="inline-flex items-center justify-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] px-6 h-12 rounded-lg text-base font-bold whitespace-nowrap transition-colors"
+                style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.06em" }}
+              >
+                <Icon name="Phone" size={18} />
+                {p.display}
+              </a>
+            ))}
             <a
               href="#contact"
               className="inline-flex items-center justify-center border border-[#d4a537]/60 hover:border-[#d4a537] hover:bg-[#d4a537]/10 text-white px-6 h-12 rounded-lg text-base font-semibold whitespace-nowrap transition-colors"

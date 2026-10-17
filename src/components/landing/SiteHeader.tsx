@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
-import { PRIMARY_PHONE } from "@/lib/contacts";
+import { PHONES } from "@/lib/contacts";
 
 const links = [
   { href: "#services", label: "Услуги" },
@@ -35,13 +35,22 @@ export default function SiteHeader() {
             </a>
           ))}
         </div>
-        <a
-          href={`tel:${PRIMARY_PHONE.tel}`}
-          className="hidden sm:inline-flex items-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] text-sm font-semibold px-4 h-9 rounded-lg transition-colors shrink-0"
-        >
-          <Icon name="Phone" size={15} />
-          {PRIMARY_PHONE.display}
-        </a>
+        <div className="hidden sm:flex items-center gap-2.5 shrink-0">
+          <span className="w-9 h-9 rounded-full bg-[#d4a537] flex items-center justify-center">
+            <Icon name="Phone" size={16} className="text-[#111]" />
+          </span>
+          <div className="flex flex-col leading-tight">
+            {PHONES.map((p) => (
+              <a
+                key={p.tel}
+                href={`tel:${p.tel}`}
+                className="text-white hover:text-[#d4a537] text-sm font-semibold whitespace-nowrap transition-colors"
+              >
+                {p.display}
+              </a>
+            ))}
+          </div>
+        </div>
         <button
           className="lg:hidden text-white p-1"
           onClick={() => setMenuOpen((v) => !v)}
@@ -63,14 +72,17 @@ export default function SiteHeader() {
               {l.label}
             </a>
           ))}
-          <a
-            href={`tel:${PRIMARY_PHONE.tel}`}
-            onClick={() => setMenuOpen(false)}
-            className="flex items-center justify-center gap-2 w-full bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] text-sm font-semibold h-10 rounded-lg transition-colors"
-          >
-            <Icon name="Phone" size={15} />
-            {PRIMARY_PHONE.display}
-          </a>
+          {PHONES.map((p) => (
+            <a
+              key={p.tel}
+              href={`tel:${p.tel}`}
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center justify-center gap-2 w-full bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] text-sm font-semibold h-10 rounded-lg transition-colors"
+            >
+              <Icon name="Phone" size={15} />
+              {p.display}
+            </a>
+          ))}
         </div>
       )}
     </nav>

@@ -1,5 +1,5 @@
 import Icon from "@/components/ui/icon";
-import { PRIMARY_PHONE, SITE, TELEGRAM } from "@/lib/contacts";
+import { PHONES, SITE, TELEGRAM } from "@/lib/contacts";
 
 const values = [
   { icon: "ShieldCheck", label: "Честно и прозрачно" },
@@ -50,7 +50,7 @@ export default function ScheduleUrgent() {
 
             <div className="mt-auto pt-8">
               <a
-                href={`tel:${PRIMARY_PHONE.tel}`}
+                href={`tel:${PHONES[0].tel}`}
                 className="inline-flex items-center gap-2 border border-[#d4a537] rounded-full px-5 py-2.5 text-white hover:bg-[#d4a537]/10 transition-colors text-sm md:text-base font-semibold"
               >
                 <Icon name="PhoneCall" size={18} className="text-[#dc2626]" />
@@ -92,17 +92,21 @@ export default function ScheduleUrgent() {
             </p>
 
             <div className="mt-auto bg-[#0d0f12] border border-white/10 rounded-xl p-4 md:p-5">
-              <a href={`tel:${PRIMARY_PHONE.tel}`} className="flex items-center gap-4 group">
-                <span className="w-12 h-12 shrink-0 rounded-lg bg-[#d4a537] flex items-center justify-center">
-                  <Icon name="Phone" size={22} className="text-[#111]" />
-                </span>
-                <span
-                  className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#d4a537] transition-colors"
-                  style={oswald}
-                >
-                  {PRIMARY_PHONE.display}
-                </span>
-              </a>
+              <div className="space-y-3">
+                {PHONES.map((p) => (
+                  <a key={p.tel} href={`tel:${p.tel}`} className="flex items-center gap-4 group">
+                    <span className="w-12 h-12 shrink-0 rounded-lg bg-[#d4a537] flex items-center justify-center">
+                      <Icon name="Phone" size={22} className="text-[#111]" />
+                    </span>
+                    <span
+                      className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#d4a537] transition-colors"
+                      style={oswald}
+                    >
+                      {p.display}
+                    </span>
+                  </a>
+                ))}
+              </div>
               <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4 pt-4 border-t border-white/10 text-sm">
                 <a
                   href={SITE.url}
