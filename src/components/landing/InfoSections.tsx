@@ -112,26 +112,24 @@ export default function InfoSections() {
             {services.map((s) => (
               <div
                 key={s.title}
-                className={`card-hover border rounded-xl p-6 transition-colors ${
-                  s.accent
-                    ? "bg-[#d4a537] border-[#d4a537]"
-                    : "bg-[#1a1d23] border-[#d4a537]/35 hover:border-[#d4a537]"
+                className={`group card-hover border rounded-xl p-6 transition-colors duration-300 hover:bg-[#d4a537] hover:border-[#d4a537] ${
+                  s.accent ? "bg-[#d4a537] border-[#d4a537]" : "bg-[#1a1d23] border-[#d4a537]/35"
                 }`}
               >
                 <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center mb-5 ${
-                    s.accent ? "bg-[#111]" : "border-2 border-[#d4a537]"
+                  className={`w-12 h-12 rounded-full flex items-center justify-center mb-5 border-2 transition-colors duration-300 group-hover:bg-[#111] group-hover:border-[#111] ${
+                    s.accent ? "bg-[#111] border-[#111]" : "border-[#d4a537]"
                   }`}
                 >
                   <Icon name={s.icon as "Car"} size={22} className="text-[#d4a537]" />
                 </div>
                 <h3
-                  className={`text-lg font-bold mb-3 ${s.accent ? "text-[#111]" : "text-white"}`}
+                  className={`text-lg font-bold mb-3 transition-colors duration-300 group-hover:text-[#111] ${s.accent ? "text-[#111]" : "text-white"}`}
                   style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.03em" }}
                 >
                   {s.title}
                 </h3>
-                <p className={`text-sm leading-relaxed ${s.accent ? "text-[#111]/80" : "text-white/60"}`}>
+                <p className={`text-sm leading-relaxed transition-colors duration-300 group-hover:text-[#111]/80 ${s.accent ? "text-[#111]/80" : "text-white/60"}`}>
                   {s.desc}
                 </p>
               </div>
