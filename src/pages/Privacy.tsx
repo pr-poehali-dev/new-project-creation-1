@@ -95,10 +95,15 @@ export default function Privacy() {
                 <div className="text-white/60">
                   <span className="text-white/40">ОГРНИП:</span> {COMPANY.ogrnip}
                 </div>
-                <div className="sm:col-span-2 flex gap-2 text-white/60">
+                <a
+                  href={`https://yandex.ru/maps/?text=${encodeURIComponent(ADDRESS.mapQuery)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="sm:col-span-2 flex gap-2 text-white/60 hover:text-[#d4a537] transition-colors"
+                >
                   <Icon name="MapPin" size={18} className="text-[#d4a537] shrink-0 mt-0.5" />
                   {ADDRESS.full}
-                </div>
+                </a>
                 <a
                   href={`mailto:${EMAIL}`}
                   className="flex items-center gap-2 text-white/60 hover:text-[#d4a537] transition-colors"

@@ -131,7 +131,7 @@ export default function ContactFooter() {
         <div className="max-w-6xl mx-auto px-4 py-12 grid gap-10 md:grid-cols-3">
           {/* Logo + name */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
+            <a href="#" aria-label="Наверх" className="flex items-center gap-3 mb-4 w-fit">
               <img src="/logo-legis.png" alt="ЛЕГИС ПРО" className="h-12 w-auto" />
               <span className="flex flex-col leading-none">
                 <span className="text-white font-bold tracking-wider text-xl" style={{ fontFamily: "'Oswald', sans-serif" }}>
@@ -139,7 +139,7 @@ export default function ContactFooter() {
                 </span>
                 <span className="text-white/50 text-[10px] tracking-[0.3em] mt-1">ПОМОЩЬ ПРИ ДТП</span>
               </span>
-            </div>
+            </a>
             <p className="text-[#d4a537] text-sm">от первого звонка до выплаты</p>
           </div>
 
@@ -176,8 +176,23 @@ export default function ContactFooter() {
             <p>{COMPANY.legalName}</p>
             <p>ИНН: {COMPANY.inn}</p>
             <p>ОГРНИП: {COMPANY.ogrnip}</p>
-            <p>Адрес: {ADDRESS.full}</p>
-            <p>E-mail: {EMAIL}</p>
+            <p>
+              Адрес:{" "}
+              <a
+                href={`https://yandex.ru/maps/?text=${encodeURIComponent(ADDRESS.mapQuery)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#d4a537] underline-offset-2 hover:underline transition-colors"
+              >
+                {ADDRESS.full}
+              </a>
+            </p>
+            <p>
+              E-mail:{" "}
+              <a href={`mailto:${EMAIL}`} className="hover:text-[#d4a537] underline-offset-2 hover:underline transition-colors">
+                {EMAIL}
+              </a>
+            </p>
             <Link to="/privacy" className="block pt-2 text-white/50 hover:text-[#d4a537] transition-colors">
               Политика конфиденциальности
             </Link>

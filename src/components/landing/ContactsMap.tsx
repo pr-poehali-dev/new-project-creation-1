@@ -23,7 +23,14 @@ export default function ContactsMap() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1" style={{ fontFamily: "'Oswald', sans-serif" }}>Адрес</h3>
-                <p className="text-white/60 text-sm leading-relaxed mb-3">{ADDRESS.full}</p>
+                <a
+                  href={`https://yandex.ru/maps/?text=${encodeURIComponent(ADDRESS.mapQuery)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-white/60 hover:text-[#d4a537] text-sm leading-relaxed mb-3 transition-colors"
+                >
+                  {ADDRESS.full}
+                </a>
                 <a
                   href={`https://yandex.ru/maps/?rtext=~${encodeURIComponent(ADDRESS.mapQuery)}&rtt=auto`}
                   target="_blank"

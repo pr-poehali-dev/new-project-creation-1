@@ -106,10 +106,12 @@ export default function OsagoCalculator() {
             от {formatPrice(price)} ₽
           </p>
         </div>
-        <a href="#osago-form">
-          <button className="bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] rounded-lg px-7 py-3 font-bold tracking-wide text-sm transition-colors" style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}>
-            ОФОРМИТЬ ПОЛИС
-          </button>
+        <a
+          href="#osago-form"
+          className="inline-block bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] rounded-lg px-7 py-3 font-bold tracking-wide text-sm transition-colors"
+          style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}
+        >
+          ОФОРМИТЬ ПОЛИС
         </a>
       </div>
 
