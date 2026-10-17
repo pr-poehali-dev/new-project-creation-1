@@ -3,6 +3,7 @@ import HeroSection from "@/components/landing/HeroSection";
 import InfoSections from "@/components/landing/InfoSections";
 import PaymentSteps from "@/components/landing/PaymentSteps";
 import OsagoSection from "@/components/landing/OsagoSection";
+import FaqSection from "@/components/landing/FaqSection";
 import ScheduleUrgent from "@/components/landing/ScheduleUrgent";
 import ContactsMap from "@/components/landing/ContactsMap";
 import ContactFooter from "@/components/landing/ContactFooter";
@@ -16,6 +17,7 @@ export default function Index() {
       <InfoSections />
       <PaymentSteps />
       <OsagoSection />
+      <FaqSection />
       <ScheduleUrgent />
       <ContactsMap />
       <ContactFooter />

@@ -9,6 +9,7 @@ const links = [
   { href: "#how", label: "Как работаем" },
   { href: "#payment-steps", label: "Этапы выплаты" },
   { href: "#reviews", label: "Отзывы" },
+  { href: "#faq", label: "Вопросы" },
   { href: "#contacts", label: "Контакты" },
 ];
 
