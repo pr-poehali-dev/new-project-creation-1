@@ -11,6 +11,11 @@ export const SITE = { display: "legis-pro.ru", url: "https://legis-pro.ru" };
 
 export const TELEGRAM = { display: "@legis_pro_dtp", url: "https://t.me/legis_pro_dtp" };
 
+export const TWOGIS = {
+  display: "Мы в 2ГИС",
+  url: "https://2gis.ru/p_kamchatskiy/firm/70000001115767525?m=158.614209%2C53.069777%2F16",
+};
+
 export const WORK_HOURS = {
   weekdays: "Пн–Пт: 10:00 — 18:00",
   weekend: "Сб–Вс: выходной",

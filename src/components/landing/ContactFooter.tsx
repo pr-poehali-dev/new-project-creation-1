@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
-import { PHONES, PRIMARY_PHONE, COMPANY, WORK_HOURS, ADDRESS, EMAIL, SITE, TELEGRAM } from "@/lib/contacts";
+import { PHONES, PRIMARY_PHONE, COMPANY, WORK_HOURS, ADDRESS, EMAIL, SITE, TELEGRAM, TWOGIS } from "@/lib/contacts";
 import { sendLead } from "@/lib/sendLead";
 
 export default function ContactFooter() {
@@ -167,6 +167,10 @@ export default function ContactFooter() {
             <a href={SITE.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-[#d4a537] transition-colors">
               <Icon name="Globe" size={15} className="text-[#d4a537]" />
               {SITE.display}
+            </a>
+            <a href={TWOGIS.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-[#d4a537] transition-colors">
+              <Icon name="MapPin" size={15} className="text-[#d4a537]" />
+              {TWOGIS.display}
             </a>
           </div>
 

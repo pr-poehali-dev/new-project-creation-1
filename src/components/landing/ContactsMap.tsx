@@ -1,5 +1,5 @@
 import Icon from "@/components/ui/icon";
-import { ADDRESS, WORK_HOURS, PHONES, EMAIL, TELEGRAM } from "@/lib/contacts";
+import { ADDRESS, WORK_HOURS, PHONES, EMAIL, TELEGRAM, TWOGIS } from "@/lib/contacts";
 
 export default function ContactsMap() {
   const mapSrc = `https://yandex.ru/map-widget/v1/?text=${encodeURIComponent(ADDRESS.mapQuery)}&z=16`;
@@ -31,16 +31,28 @@ export default function ContactsMap() {
                 >
                   {ADDRESS.full}
                 </a>
-                <a
-                  href={`https://yandex.ru/maps/?rtext=~${encodeURIComponent(ADDRESS.mapQuery)}&rtt=auto`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
-                  style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.04em" }}
-                >
-                  <Icon name="Navigation" size={16} />
-                  ПОСТРОИТЬ МАРШРУТ
-                </a>
+                <div className="flex flex-wrap gap-2">
+                  <a
+                    href={`https://yandex.ru/maps/?rtext=~${encodeURIComponent(ADDRESS.mapQuery)}&rtt=auto`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+                    style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.04em" }}
+                  >
+                    <Icon name="Navigation" size={16} />
+                    ПОСТРОИТЬ МАРШРУТ
+                  </a>
+                  <a
+                    href={TWOGIS.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border border-[#19AA1E] text-white hover:bg-[#19AA1E] text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+                    style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.04em" }}
+                  >
+                    <span className="flex items-center justify-center w-5 h-5 rounded bg-[#19AA1E] text-white text-[9px] font-bold leading-none">2ГИС</span>
+                    МЫ В 2ГИС
+                  </a>
+                </div>
               </div>
             </div>
 
