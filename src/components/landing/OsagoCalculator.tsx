@@ -31,26 +31,26 @@ export default function OsagoCalculator() {
   const price = car.base * power.k * exp.k;
 
   return (
-    <div className="bg-gray-50 border-2 border-gray-100 rounded-sm p-6 md:p-8 mb-12">
+    <div className="bg-[#1a1d23] border border-[#d4a537]/35 rounded-xl p-6 md:p-8 mb-12">
       <div className="flex items-center gap-2 mb-6">
-        <Icon name="Calculator" size={22} className="text-red-700" />
-        <h3 className="text-xl font-bold text-[#111]" style={{ fontFamily: "'Oswald', sans-serif" }}>
+        <Icon name="Calculator" size={22} className="text-[#d4a537]" />
+        <h3 className="text-xl font-bold text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>
           ПРИМЕРНАЯ СТОИМОСТЬ ОСАГО
         </h3>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6 mb-6">
         <div>
-          <p className="text-sm font-semibold text-gray-500 mb-3">Тип авто</p>
+          <p className="text-sm font-semibold text-white/60 mb-3">Тип авто</p>
           <div className="grid grid-cols-2 gap-2">
             {carTypes.map((c) => (
               <button
                 key={c.id}
                 onClick={() => setCar(c)}
-                className={`flex items-center gap-2 px-3 py-2.5 rounded-sm border-2 text-sm transition-colors ${
+                className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border text-sm transition-colors ${
                   car.id === c.id
-                    ? "bg-red-700 border-red-700 text-white"
-                    : "bg-white border-gray-200 text-gray-600 hover:border-red-200"
+                    ? "bg-[#d4a537] border-[#d4a537] text-[#111] font-semibold"
+                    : "bg-[#0d0f12] border-white/10 text-white/80 hover:border-[#d4a537]/60"
                 }`}
               >
                 <Icon name={c.icon as "Car"} size={16} />
@@ -61,16 +61,16 @@ export default function OsagoCalculator() {
         </div>
 
         <div>
-          <p className="text-sm font-semibold text-gray-500 mb-3">Мощность</p>
+          <p className="text-sm font-semibold text-white/60 mb-3">Мощность</p>
           <div className="grid grid-cols-2 gap-2">
             {powers.map((p) => (
               <button
                 key={p.id}
                 onClick={() => setPower(p)}
-                className={`px-3 py-2.5 rounded-sm border-2 text-sm transition-colors ${
+                className={`px-3 py-2.5 rounded-lg border text-sm transition-colors ${
                   power.id === p.id
-                    ? "bg-red-700 border-red-700 text-white"
-                    : "bg-white border-gray-200 text-gray-600 hover:border-red-200"
+                    ? "bg-[#d4a537] border-[#d4a537] text-[#111] font-semibold"
+                    : "bg-[#0d0f12] border-white/10 text-white/80 hover:border-[#d4a537]/60"
                 }`}
               >
                 {p.label}
@@ -80,16 +80,16 @@ export default function OsagoCalculator() {
         </div>
 
         <div>
-          <p className="text-sm font-semibold text-gray-500 mb-3">Стаж вождения</p>
+          <p className="text-sm font-semibold text-white/60 mb-3">Стаж вождения</p>
           <div className="grid grid-cols-2 gap-2">
             {experiences.map((e) => (
               <button
                 key={e.id}
                 onClick={() => setExp(e)}
-                className={`px-3 py-2.5 rounded-sm border-2 text-sm transition-colors ${
+                className={`px-3 py-2.5 rounded-lg border text-sm transition-colors ${
                   exp.id === e.id
-                    ? "bg-red-700 border-red-700 text-white"
-                    : "bg-white border-gray-200 text-gray-600 hover:border-red-200"
+                    ? "bg-[#d4a537] border-[#d4a537] text-[#111] font-semibold"
+                    : "bg-[#0d0f12] border-white/10 text-white/80 hover:border-[#d4a537]/60"
                 }`}
               >
                 {e.label}
@@ -99,21 +99,21 @@ export default function OsagoCalculator() {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white border-2 border-gray-100 rounded-sm p-5">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#0d0f12] border border-[#d4a537]/30 rounded-xl p-5">
         <div className="text-center sm:text-left">
-          <p className="text-sm text-gray-500">Примерная цена полиса</p>
-          <p className="text-3xl font-bold text-[#111]" style={{ fontFamily: "'Oswald', sans-serif" }}>
+          <p className="text-sm text-white/60">Примерная цена полиса</p>
+          <p className="text-3xl font-bold text-[#d4a537]" style={{ fontFamily: "'Oswald', sans-serif" }}>
             от {formatPrice(price)} ₽
           </p>
         </div>
         <a href="#osago-form">
-          <button className="bg-red-700 hover:bg-red-800 text-white rounded-sm px-7 py-3 font-bold tracking-wide text-sm transition-colors" style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}>
+          <button className="bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] rounded-lg px-7 py-3 font-bold tracking-wide text-sm transition-colors" style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}>
             ОФОРМИТЬ ПОЛИС
           </button>
         </a>
       </div>
 
-      <p className="text-xs text-gray-400 mt-4 leading-relaxed">
+      <p className="text-xs text-white/40 mt-4 leading-relaxed">
         Расчёт является предварительным и носит ознакомительный характер. Точную стоимость
         с учётом КБМ, региона и всех коэффициентов мы рассчитаем по вашей заявке.
       </p>

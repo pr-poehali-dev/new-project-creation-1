@@ -1,16 +1,19 @@
 export const PHONES = [
-  { display: "8 999 299-74-47", tel: "+79992997447", digits: "79992997447" },
-  { display: "8 909 890-43-90", tel: "+79098904390", digits: "79098904390" },
+  { display: "+7 (914) 780-00-70", tel: "+79147800070", digits: "79147800070" },
 ];
 
 export const PRIMARY_PHONE = PHONES[0];
 
 export const EMAIL = "legis-pro@outlook.com";
 
+export const SITE = { display: "legis-pro.ru", url: "https://legis-pro.ru" };
+
+export const TELEGRAM = { display: "@legis_pro_dtp", url: "https://t.me/legis_pro_dtp" };
+
 export const WORK_HOURS = {
-  weekdays: "Пн–Пт: 10:00 — 19:00",
-  weekend: "Сб, Вс: выходной",
-  short: "Пн–Пт 10:00–19:00",
+  weekdays: "Пн–Пт: 10:00 — 18:00",
+  weekend: "Сб–Вс: выходной",
+  short: "Пн–Пт 10:00–18:00",
 };
 
 export const ADDRESS = {
@@ -20,7 +23,7 @@ export const ADDRESS = {
 };
 
 export const COMPANY = {
-  name: "ЛегисПро",
+  name: "ЛЕГИС ПРО",
   legalName: "ИП Ледюкова Диана Евгеньевна",
   inn: "410124236711",
   ogrnip: "325410000018892",

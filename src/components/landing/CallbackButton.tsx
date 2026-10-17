@@ -46,10 +46,10 @@ export default function CallbackButton() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Заказать обратный звонок"
-        className="fixed bottom-5 left-5 z-50 flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white rounded-full pl-3 pr-5 h-12 shadow-lg hover:scale-105 transition-transform"
+        className="fixed bottom-5 left-5 z-50 flex items-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] rounded-full pl-3 pr-5 h-12 shadow-lg hover:scale-105 transition-transform"
       >
         <span className="relative flex items-center justify-center w-7 h-7">
-          <span className="absolute inline-flex h-full w-full rounded-full bg-white/40 animate-ping" />
+          <span className="absolute inline-flex h-full w-full rounded-full bg-[#111]/25 animate-ping" />
           <Icon name="Phone" size={18} className="relative" />
         </span>
         <span className="text-sm font-semibold" style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.04em" }}>
@@ -63,7 +63,7 @@ export default function CallbackButton() {
           onClick={close}
         >
           <div
-            className="relative w-full max-w-md bg-[#111111] rounded-sm p-8"
+            className="relative w-full max-w-md bg-[#1a1d23] border border-[#d4a537]/40 rounded-xl p-8"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -76,7 +76,7 @@ export default function CallbackButton() {
 
             {submitted ? (
               <div className="text-center text-white py-4">
-                <Icon name="CheckCircle" size={48} className="mx-auto mb-4 text-red-500" />
+                <Icon name="CheckCircle" size={48} className="mx-auto mb-4 text-[#d4a537]" />
                 <p className="text-xl font-bold" style={{ fontFamily: "'Oswald', sans-serif" }}>ЗАЯВКА ПРИНЯТА!</p>
                 <p className="text-white/60 mt-2">Перезвоним в течение 5 минут</p>
               </div>
@@ -96,13 +96,13 @@ export default function CallbackButton() {
                     onChange={(e) => setPhone(e.target.value)}
                     required
                     disabled={loading}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/40 rounded-sm focus:border-white mb-4"
+                    className="h-11 bg-[#0d0f12] border-white/10 text-white placeholder:text-white/40 rounded-lg focus-visible:ring-[#d4a537] focus:border-[#d4a537] mb-4"
                   />
                   <Button
                     type="submit"
                     size="lg"
                     disabled={loading}
-                    className="w-full bg-red-700 hover:bg-red-800 text-white rounded-sm font-bold tracking-wide"
+                    className="w-full bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] rounded-lg font-bold tracking-wide"
                     style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.08em" }}
                   >
                     {loading ? "ОТПРАВКА..." : "ЖДУ ЗВОНКА"}
@@ -112,11 +112,11 @@ export default function CallbackButton() {
                       type="checkbox"
                       required
                       disabled={loading}
-                      className="mt-0.5 shrink-0 accent-red-700"
+                      className="mt-0.5 shrink-0 accent-[#d4a537]"
                     />
                     <span>
                       Я согласен на обработку персональных данных и принимаю условия{" "}
-                      <Link to="/privacy" target="_blank" className="underline hover:text-white">
+                      <Link to="/privacy" target="_blank" className="underline hover:text-[#d4a537]">
                         политики конфиденциальности
                       </Link>
                     </span>

@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 
 const services = [
@@ -99,69 +98,75 @@ export default function InfoSections() {
   return (
     <>
       {/* SERVICES */}
-      <section id="services" className="py-20 bg-white">
+      <section id="services" className="py-20 bg-[#14171c]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-14">
-            <p className="text-red-700 text-sm font-semibold tracking-widest uppercase mb-3">Что мы делаем</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#111] mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <p className="text-[#d4a537] text-sm font-semibold tracking-widest uppercase mb-3">Что мы делаем</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white uppercase mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
               НАШИ УСЛУГИ
             </h2>
-            <div className="w-14 h-1 bg-red-700 rounded" />
+            <div className="w-14 h-1 bg-[#d4a537] rounded" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((s) => (
-              <Card
+              <div
                 key={s.title}
-                className={`card-hover border-2 rounded-sm cursor-pointer ${s.accent ? "bg-red-700 border-red-700" : "bg-white border-gray-100 hover:border-red-200"}`}
+                className={`card-hover border rounded-xl p-6 transition-colors ${
+                  s.accent
+                    ? "bg-[#d4a537] border-[#d4a537]"
+                    : "bg-[#1a1d23] border-[#d4a537]/35 hover:border-[#d4a537]"
+                }`}
               >
-                <CardContent className="p-6">
-                  <div className={`w-12 h-12 rounded-sm flex items-center justify-center mb-5 ${s.accent ? "bg-red-800" : "bg-red-50"}`}>
-                    <Icon name={s.icon as "Car"} size={22} className={s.accent ? "text-white" : "text-red-700"} />
-                  </div>
-                  <h3
-                    className={`text-lg font-bold mb-3 ${s.accent ? "text-white" : "text-[#111]"}`}
-                    style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.03em" }}
-                  >
-                    {s.title}
-                  </h3>
-                  <p className={`text-sm leading-relaxed ${s.accent ? "text-white/80" : "text-gray-500"}`}>
-                    {s.desc}
-                  </p>
-                </CardContent>
-              </Card>
+                <div
+                  className={`w-12 h-12 rounded-full flex items-center justify-center mb-5 ${
+                    s.accent ? "bg-[#111]" : "border-2 border-[#d4a537]"
+                  }`}
+                >
+                  <Icon name={s.icon as "Car"} size={22} className="text-[#d4a537]" />
+                </div>
+                <h3
+                  className={`text-lg font-bold mb-3 ${s.accent ? "text-[#111]" : "text-white"}`}
+                  style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.03em" }}
+                >
+                  {s.title}
+                </h3>
+                <p className={`text-sm leading-relaxed ${s.accent ? "text-[#111]/80" : "text-white/60"}`}>
+                  {s.desc}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ADVANTAGES */}
-      <section id="advantages" className="py-20 bg-gray-50">
+      <section id="advantages" className="py-20 bg-[#0d0f12]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-14">
-            <p className="text-red-700 text-sm font-semibold tracking-widest uppercase mb-3">Почему мы</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#111] mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <p className="text-[#d4a537] text-sm font-semibold tracking-widest uppercase mb-3">Почему мы</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white uppercase mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
               НАШИ ПРЕИМУЩЕСТВА
             </h2>
-            <div className="w-14 h-1 bg-red-700 rounded" />
+            <div className="w-14 h-1 bg-[#d4a537] rounded" />
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {advantages.map((a) => (
               <div
                 key={a.title}
-                className="card-hover flex gap-5 bg-white border-2 border-gray-100 hover:border-red-200 rounded-sm p-7"
+                className="card-hover flex gap-5 bg-[#1a1d23] border border-[#d4a537]/35 hover:border-[#d4a537] rounded-xl p-7 transition-colors"
               >
-                <div className="w-14 h-14 shrink-0 bg-red-50 rounded-sm flex items-center justify-center">
-                  <Icon name={a.icon as "Wallet"} size={26} className="text-red-700" />
+                <div className="w-14 h-14 shrink-0 border-2 border-[#d4a537] rounded-full flex items-center justify-center">
+                  <Icon name={a.icon as "Wallet"} size={24} className="text-[#d4a537]" />
                 </div>
                 <div>
                   <h3
-                    className="text-xl font-bold text-[#111] mb-2"
+                    className="text-xl font-bold text-white mb-2"
                     style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.03em" }}
                   >
                     {a.title}
                   </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{a.desc}</p>
+                  <p className="text-white/60 text-sm leading-relaxed">{a.desc}</p>
                 </div>
               </div>
             ))}
@@ -170,25 +175,28 @@ export default function InfoSections() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how" className="py-20 bg-[#111111]">
+      <section id="how" className="py-20 bg-[#14171c]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-14">
-            <p className="text-red-500 text-sm font-semibold tracking-widest uppercase mb-3">Просто и понятно</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <p className="text-[#d4a537] text-sm font-semibold tracking-widest uppercase mb-3">Просто и понятно</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white uppercase mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
               КАК МЫ РАБОТАЕМ
             </h2>
-            <div className="w-14 h-1 bg-red-700 rounded" />
+            <div className="w-14 h-1 bg-[#d4a537] rounded" />
           </div>
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-3 gap-6">
             {steps.map((step) => (
-              <div key={step.num}>
-                <div className="text-7xl font-bold text-red-700/25 mb-4 leading-none" style={{ fontFamily: "'Oswald', sans-serif" }}>
+              <div
+                key={step.num}
+                className="card-hover bg-[#1a1d23] border border-[#d4a537]/35 hover:border-[#d4a537] rounded-xl p-7 transition-colors"
+              >
+                <div className="text-7xl font-bold text-[#d4a537]/40 mb-4 leading-none" style={{ fontFamily: "'Oswald', sans-serif" }}>
                   {step.num}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "'Oswald', sans-serif" }}>
                   {step.title}
                 </h3>
-                <p className="text-white/50 leading-relaxed">{step.desc}</p>
+                <p className="text-white/60 leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -196,44 +204,45 @@ export default function InfoSections() {
       </section>
 
       {/* REVIEWS */}
-      <section id="reviews" className="py-20 bg-gray-50">
+      <section id="reviews" className="py-20 bg-[#0d0f12]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-14">
-            <p className="text-red-700 text-sm font-semibold tracking-widest uppercase mb-3">Наши клиенты</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#111] mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
+            <p className="text-[#d4a537] text-sm font-semibold tracking-widest uppercase mb-3">Наши клиенты</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white uppercase mb-4" style={{ fontFamily: "'Oswald', sans-serif" }}>
               ОТЗЫВЫ
             </h2>
-            <div className="w-14 h-1 bg-red-700 rounded" />
+            <div className="w-14 h-1 bg-[#d4a537] rounded" />
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {reviews.map((r, idx) => (
-              <Card key={idx} className="card-hover border-0 shadow-md rounded-sm">
-                <CardContent className="p-7">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex gap-1">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Icon
-                          key={i}
-                          name="Star"
-                          size={16}
-                          className={i < r.stars ? "text-red-600 fill-red-600" : "text-gray-200 fill-gray-200"}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-gray-400 text-xs">{r.date}</span>
+              <div
+                key={idx}
+                className="card-hover bg-[#1a1d23] border border-[#d4a537]/35 hover:border-[#d4a537] rounded-xl p-7 transition-colors"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Icon
+                        key={i}
+                        name="Star"
+                        size={16}
+                        className={i < r.stars ? "text-[#d4a537] fill-[#d4a537]" : "text-white/15 fill-white/15"}
+                      />
+                    ))}
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-5 text-sm">"{r.text}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-red-700 rounded-full flex items-center justify-center text-white text-sm font-bold">
-                      {r.name[0]}
-                    </div>
-                    <div>
-                      <span className="block font-semibold text-[#111] text-sm leading-tight">{r.name}</span>
-                      <span className="block text-gray-400 text-xs">{r.city}</span>
-                    </div>
+                  <span className="text-white/40 text-xs">{r.date}</span>
+                </div>
+                <p className="text-white/70 leading-relaxed mb-5 text-sm">"{r.text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-[#d4a537] rounded-full flex items-center justify-center text-[#111] text-sm font-bold">
+                    {r.name[0]}
                   </div>
-                </CardContent>
-              </Card>
+                  <div>
+                    <span className="block font-semibold text-white text-sm leading-tight">{r.name}</span>
+                    <span className="block text-white/40 text-xs">{r.city}</span>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>

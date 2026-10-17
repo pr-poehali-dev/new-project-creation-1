@@ -8,7 +8,7 @@ export default function Privacy() {
       <nav className="bg-[#111111] border-b border-white/10">
         <div className="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="text-white text-xl font-bold tracking-wider" style={{ fontFamily: "'Oswald', sans-serif" }}>
-            ЛЕГИС<span className="text-red-500">ПРО</span>
+            ЛЕГИС <span className="text-[#d4a537]">ПРО</span>
           </Link>
           <Link to="/" className="flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors">
             <Icon name="ArrowLeft" size={16} />
@@ -21,7 +21,7 @@ export default function Privacy() {
         <h1 className="text-3xl md:text-4xl font-bold text-[#111] mb-2" style={{ fontFamily: "'Oswald', sans-serif" }}>
           ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ
         </h1>
-        <div className="w-14 h-1 bg-red-700 rounded mb-8" />
+        <div className="w-14 h-1 bg-[#d4a537] rounded mb-8" />
 
         <div className="space-y-6 text-gray-600 leading-relaxed text-sm">
           <section>
@@ -72,7 +72,7 @@ export default function Privacy() {
             <p>ИНН: {COMPANY.inn}</p>
             <p>ОГРНИП: {COMPANY.ogrnip}</p>
             <p>Адрес: {ADDRESS.full}</p>
-            <p>E-mail: <a href={`mailto:${EMAIL}`} className="text-red-700 hover:underline">{EMAIL}</a></p>
+            <p>E-mail: <a href={`mailto:${EMAIL}`} className="text-[#d4a537] hover:underline">{EMAIL}</a></p>
             <p>Телефон: {PHONES.map((p) => p.display).join(", ")}</p>
           </section>
         </div>

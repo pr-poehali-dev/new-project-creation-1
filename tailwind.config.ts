@@ -19,6 +19,15 @@ export default {
 		},
 		extend: {
 			colors: {
+				gold: {
+					DEFAULT: '#d4a537',
+					hover: '#e6b94a'
+				},
+				graphite: {
+					DEFAULT: '#0d0f12',
+					alt: '#14171c',
+					card: '#1a1d23'
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
