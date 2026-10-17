@@ -77,7 +77,7 @@ export default function ContactsMap() {
                 <div className="space-y-2 mt-2">
                   {PHONES.map((p) => (
                     <div key={p.tel} className="flex flex-wrap items-center gap-2">
-                      <a href={`tel:${p.tel}`} className="text-white/80 hover:text-[#d4a537] text-sm font-medium transition-colors min-w-[150px]">
+                      <a href={`tel:${p.tel}`} className="w-full sm:w-auto py-1 text-white/80 hover:text-[#d4a537] text-base sm:text-sm font-medium transition-colors whitespace-nowrap sm:min-w-[150px]">
                         {p.display}
                       </a>
                       <a
@@ -85,7 +85,7 @@ export default function ContactsMap() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Написать в WhatsApp ${p.display}`}
-                        className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#1ebe5b] text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors"
+                        className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#1ebe5b] text-white text-xs font-semibold px-3 py-2 rounded-md transition-colors"
                       >
                         <Icon name="MessageCircle" size={14} />
                         WhatsApp
@@ -95,7 +95,7 @@ export default function ContactsMap() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Написать в Telegram ${p.display}`}
-                        className="inline-flex items-center gap-1.5 bg-[#229ED9] hover:bg-[#1c8cc2] text-white text-xs font-semibold px-3 py-1.5 rounded-md transition-colors"
+                        className="inline-flex items-center gap-1.5 bg-[#229ED9] hover:bg-[#1c8cc2] text-white text-xs font-semibold px-3 py-2 rounded-md transition-colors"
                       >
                         <Icon name="Send" size={14} />
                         Telegram
@@ -112,7 +112,7 @@ export default function ContactsMap() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1" style={{ fontFamily: "'Oswald', sans-serif" }}>E-mail</h3>
-                <a href={`mailto:${EMAIL}`} className="text-white/60 hover:text-[#d4a537] text-sm transition-colors">{EMAIL}</a>
+                <a href={`mailto:${EMAIL}`} className="inline-block py-1 text-white/60 hover:text-[#d4a537] text-sm transition-colors break-all">{EMAIL}</a>
               </div>
             </div>
 
@@ -122,7 +122,7 @@ export default function ContactsMap() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1" style={{ fontFamily: "'Oswald', sans-serif" }}>Telegram</h3>
-                <a href={TELEGRAM.url} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[#d4a537] text-sm transition-colors">{TELEGRAM.display}</a>
+                <a href={TELEGRAM.url} target="_blank" rel="noopener noreferrer" className="inline-block py-1 text-white/60 hover:text-[#d4a537] text-sm transition-colors">{TELEGRAM.display}</a>
               </div>
             </div>
           </div>

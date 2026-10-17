@@ -108,7 +108,7 @@ export default function ContactFooter() {
                 <a
                   key={p.tel}
                   href={`tel:${p.tel}`}
-                  className="flex items-center gap-2 text-[#d4a537] font-bold text-2xl hover:text-[#e6b94a] transition-colors"
+                  className="flex items-center gap-2 py-1 text-[#d4a537] font-bold text-2xl hover:text-[#e6b94a] transition-colors whitespace-nowrap"
                   style={{ fontFamily: "'Oswald', sans-serif" }}
                 >
                   <Icon name="Phone" size={20} />
@@ -146,7 +146,7 @@ export default function ContactFooter() {
           <div className="space-y-2.5 text-sm">
             <p className="text-white font-semibold mb-3" style={{ fontFamily: "'Oswald', sans-serif", letterSpacing: "0.05em" }}>КОНТАКТЫ</p>
             {PHONES.map((p) => (
-              <a key={p.tel} href={`tel:${p.tel}`} className="flex items-center gap-2 text-white hover:text-[#d4a537] font-semibold transition-colors">
+              <a key={p.tel} href={`tel:${p.tel}`} className="flex items-center gap-2 py-1 text-white hover:text-[#d4a537] font-semibold transition-colors whitespace-nowrap w-fit">
                 <Icon name="Phone" size={15} className="text-[#d4a537]" />
                 {p.display}
               </a>
@@ -159,15 +159,15 @@ export default function ContactFooter() {
               <Icon name="PhoneCall" size={15} />
               Срочно — 24/7 по телефону
             </p>
-            <a href={TELEGRAM.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-[#d4a537] transition-colors">
+            <a href={TELEGRAM.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-1 text-white/60 hover:text-[#d4a537] transition-colors w-fit">
               <Icon name="Send" size={15} className="text-[#d4a537]" />
               {TELEGRAM.display}
             </a>
-            <a href={SITE.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-[#d4a537] transition-colors">
+            <a href={SITE.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-1 text-white/60 hover:text-[#d4a537] transition-colors w-fit">
               <Icon name="Globe" size={15} className="text-[#d4a537]" />
               {SITE.display}
             </a>
-            <a href={TWOGIS.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/60 hover:text-[#d4a537] transition-colors">
+            <a href={TWOGIS.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-1 text-white/60 hover:text-[#d4a537] transition-colors w-fit">
               <Icon name="MapPin" size={15} className="text-[#d4a537]" />
               {TWOGIS.display}
             </a>
@@ -192,7 +192,7 @@ export default function ContactFooter() {
             </p>
             <p>
               E-mail:{" "}
-              <a href={`mailto:${EMAIL}`} className="hover:text-[#d4a537] underline-offset-2 hover:underline transition-colors">
+              <a href={`mailto:${EMAIL}`} className="hover:text-[#d4a537] underline-offset-2 hover:underline transition-colors break-all">
                 {EMAIL}
               </a>
             </p>

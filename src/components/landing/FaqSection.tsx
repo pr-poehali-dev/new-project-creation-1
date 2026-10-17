@@ -115,12 +115,12 @@ export default function FaqSection() {
             <p className="text-xl font-bold text-white uppercase" style={OSWALD}>Не нашли ответ на свой вопрос?</p>
             <p className="text-white/60 text-sm mt-1">Позвоните — бесплатно разберём вашу ситуацию</p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full md:w-auto">
             {[PRIMARY_PHONE, QUESTIONS_PHONE].map((p) => (
               <a
                 key={p.tel}
                 href={`tel:${p.tel}`}
-                className="inline-flex items-center justify-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] font-bold px-6 h-12 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#d4a537] hover:bg-[#e6b94a] text-[#111] font-bold px-6 h-12 rounded-lg transition-colors whitespace-nowrap w-full sm:w-auto"
                 style={{ ...OSWALD, letterSpacing: "0.06em" }}
               >
                 <Icon name="Phone" size={18} />

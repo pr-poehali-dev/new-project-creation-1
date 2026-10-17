@@ -28,14 +28,14 @@ export default function SiteHeader() {
             <span className="text-white/50 text-[9px] tracking-[0.3em] mt-1">ПОМОЩЬ ПРИ ДТП</span>
           </span>
         </a>
-        <div className="hidden lg:flex items-center gap-6 text-sm text-white/70">
+        <div className="hidden xl:flex items-center gap-6 text-sm text-white/70">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-[#d4a537] transition-colors">
               {l.label}
             </a>
           ))}
         </div>
-        <div className="hidden sm:flex items-center gap-2.5 shrink-0">
+        <div className="hidden sm:flex items-center gap-2.5 shrink-0 ml-auto mr-3 xl:ml-0 xl:mr-0">
           <span className="w-9 h-9 rounded-full bg-[#d4a537] flex items-center justify-center">
             <Icon name="Phone" size={16} className="text-[#111]" />
           </span>
@@ -52,7 +52,7 @@ export default function SiteHeader() {
           </div>
         </div>
         <button
-          className="lg:hidden text-white p-1"
+          className="xl:hidden text-white p-2 -mr-1"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Меню"
         >
@@ -61,13 +61,13 @@ export default function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden bg-[#0d0f12] border-t border-[#d4a537]/20 px-4 py-4 flex flex-col gap-4 text-white/80">
+        <div className="xl:hidden bg-[#0d0f12] border-t border-[#d4a537]/20 px-4 py-4 flex flex-col gap-4 text-white/80">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
-              className="hover:text-[#d4a537] transition-colors"
+              className="py-1.5 hover:text-[#d4a537] transition-colors"
             >
               {l.label}
             </a>

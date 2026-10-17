@@ -106,7 +106,7 @@ export default function Privacy() {
                 </a>
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="flex items-center gap-2 text-white/60 hover:text-[#d4a537] transition-colors"
+                  className="flex items-center gap-2 py-1 text-white/60 hover:text-[#d4a537] transition-colors break-all"
                 >
                   <Icon name="Mail" size={18} className="text-[#d4a537] shrink-0" />
                   {EMAIL}
@@ -116,7 +116,7 @@ export default function Privacy() {
                     <a
                       key={p.tel}
                       href={`tel:${p.tel}`}
-                      className="flex items-center gap-2 text-white/60 hover:text-[#d4a537] transition-colors"
+                      className="flex items-center gap-2 py-1 text-white/60 hover:text-[#d4a537] transition-colors whitespace-nowrap w-fit"
                     >
                       <Icon name="Phone" size={18} className="text-[#d4a537] shrink-0" />
                       {p.display}
